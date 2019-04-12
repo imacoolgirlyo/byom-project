@@ -4,7 +4,14 @@ export default class MusicInputForm extends Component{
     render(){
         return(
             <div>
-                hi this is music input form
+                <form>
+                    <input 
+                    type="text"
+                    placeholder="Artist"/>
+                    <input 
+                    type="text"
+                    placeholder="Title"/>
+                </form>
             </div>
         )
     }
