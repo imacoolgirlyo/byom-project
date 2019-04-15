@@ -1,34 +1,22 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import Music from './Music';
+
+// PlayList가 아닌 App이 musics라는 state를 가지고 있어야하나 ? App이 가지고 있어햐나는 이유는?
 
 export default class PlayList extends Component{
     constructor(props){
         super(props);
-        this.state= {
-            musics : []
-        };
-    }
-
-    componentDidMount() {
-        axios.get('http://localhost:3231/playlist')
-        .then(res => {
-            this.setState({musics : res.data});
-        })
-        .catch(function(err){
-            console.log(err);
-        })
     }
 
     playList(){
-        return this.state.musics.map(function(currentMusic, i){
-            return <Music music={currentMusic} key={i}/>;
+        return this.props.musics.map(function(currentMusic, i){
+            return <Music currentMusic={currentMusic} key={i}/>;
         })
     }
     render(){
         return(
             <div>
-                This is PlayList
+                this is playList
                {this.playList()}
             </div>
         )

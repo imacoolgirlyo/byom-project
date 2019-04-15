@@ -4,10 +4,9 @@ import React, { Component } from 'react';
 export default class LoginForm extends Component{
     constructor(props){
         super(props);
-        this.state = {
-            nickname : '',
-            error : ''
-        };
+        this.state={
+            nickname : ""
+        }
     }
     // setUser = ({user, isUser}) => {
     //     console.log('After Creating User');
@@ -19,33 +18,38 @@ export default class LoginForm extends Component{
     //     }
     // }
 
-    // handleChange = (e) => {
-    //     this.setState({nickname : e.target.value})
-    // }
+    setUser = (user) => {
+        this.props.setUser(user);
+    }
 
-    // handleSubmit = (e) => {
-    //     e.preventDefault();
-    //     //user 이름을 socket으로 보낼거임, props : socket, setUser 사용 
-    //     const { socket } = this.props
-    //     const { nickname } = this.state
-    //     console.log(nickname + " is submitted. ");
-    //     socket.emit("VERIFY_USER", nickname);
-    //     // setUser는 emit 후, handler 
-    // }
+    handleChange = (e) => {
+        this.setState({nickname : e.target.value});
+    }
 
-    // setError = (error) => {
-    //     this.setState({error})
-    // }
+    handleSubmit = (e) => {
+        e.preventDefault();
+        //user 이름을 socket으로 보낼거임, props : socket, setUser 사용 
+        const { socket } = this.props
+        const { nickname } = this.state
+        console.log(nickname + " is submitted. ");
+        socket.emit("VERIFY_USER", nickname, this.setUser);
+        // setUser는 emit 후, handler 
+    }
+
+    setError = (error) => {
+        this.setState({error})
+    }
 
     render(){
-        const { nickname, error } = this.state
         return(
             <div className="login">
-                <form>
+                <form onSubmit={this.handleSubmit}>
                     <input
                         type="text"
                         placeholder="Your Cool Nickname"
                         id="nickname"
+                        value={this.state.nickname}
+                        onChange ={this.handleChange}
                         />
                 </form>
                 {/* <form onSubmit={this.handleSubmit} className="login__form">

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import io from 'socket.io-client';
 import LoginForm from './LoginForm';
-import Container from './chats/Container';
+import Container from './Container';
 
 const socketURL = "http://localhost:3231";
 export default class Layout extends Component {
@@ -13,11 +13,9 @@ export default class Layout extends Component {
             user : null
         };
     }
-
     componentDidMount(){
         this.initSocket()
     }
-
     /*
 	*	Initializes socket event callbacks
 	*/
@@ -38,11 +36,11 @@ export default class Layout extends Component {
     *	현재 user login 시키기
     *   @param user an object {id:number ,name: string }
     */
-//    setUser = (user) => {
-//        const { socket } = this.state
-//        socket.emit('USER_CONNECTED' , user);
-//        this.setState({user})
-//    }
+   setUser = (user) => {
+       const { socket } = this.state
+       socket.emit('USER_CONNECTED' , user);
+       this.setState({user})
+   }
 
 //    logout = () => {
 //        const { socket } = this.state
@@ -56,14 +54,12 @@ export default class Layout extends Component {
         return(
             <div className="container">
                 <h1> {title} </h1>
-                <LoginForm socket={socket} setUser={this.setUser}/>
-                {/* {
+                {
                     !user ?
                     <LoginForm socket={socket} setUser={this.setUser}/>
                     :
-                    <Container socket={socket} user={user} user={this.logout} />
-                } */}
-                
+                    <Container socket={socket} user={user}/>
+                }
             </div>
         )
     }
