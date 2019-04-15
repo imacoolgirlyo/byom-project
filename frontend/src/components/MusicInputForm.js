@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 
 export default class MusicInputForm extends Component{
+    constructor(props){
+        super(props);
+    }
     render(){
-        console.log(this.props.nickname)
         return(
             <div>
                 <form>

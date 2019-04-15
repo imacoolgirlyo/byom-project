@@ -4,7 +4,7 @@ const morgan= require('morgan');
 const cors = require('cors');
 var server = require('http').createServer(app)
 var io = module.exports.io = require('socket.io')(server)
-
+const db = require('./db');
 app.use(morgan("dev"));
 app.use(cors());
 const PORT = process.env.PORT || 3231

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PlayList from './PlayList';
 import axios from 'axios';
+import MusicInputForm from './MusicInputForm';
 
 export default class Container extends Component{
     constructor(props){
@@ -22,12 +23,12 @@ export default class Container extends Component{
         })
     }
     render(){
-        const { user, logout } = this.props;
+        const { user } = this.props;
         const { musics } = this.state;
         return(
             <div>
-                Container
                 <PlayList musics={musics} />
+                <MusicInputForm user={user}/>
             </div>
         )
     }
