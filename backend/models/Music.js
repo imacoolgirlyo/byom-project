@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
 const MusicSchema = new mongoose.Schema({
     sender:{
@@ -15,5 +15,6 @@ const MusicSchema = new mongoose.Schema({
     }
 })
 
-const model = mongoose.model('Music', MusicSchema);
-export default model;
+const MusicModel = mongoose.model('Music', MusicSchema);
+
+module.exports = MusicModel;

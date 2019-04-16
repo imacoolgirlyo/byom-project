@@ -18,6 +18,7 @@ export default class Container extends Component{
         // 서버에서 보내는 새로운 music들 socket.on으로 기다리고, callback 함수 만들기
         axios.get('http://localhost:3231/playlist')
         .then(res => {
+            console.log(res.data);
             this.setState({musics : res.data});
         })
         .catch(function(err){
@@ -32,7 +33,6 @@ export default class Container extends Component{
     }
 
     addMusictoPlayList = (data) => {
-        console.log(data);
         const { musics } = this.state;
         console.log(musics);
         this.setState(prevState => ({

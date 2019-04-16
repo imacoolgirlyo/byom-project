@@ -5,6 +5,7 @@ const cors = require('cors');
 var server = require('http').createServer(app)
 var io = module.exports.io = require('socket.io')(server)
 const db = require('./db');
+const Music = require('./models/Music');
 app.use(morgan("dev"));
 app.use(cors());
 const PORT = process.env.PORT || 3231
@@ -36,5 +37,7 @@ server.listen(PORT , ()=> {
 })
 
 app.get('/playlist', function(req, res){
-    res.send(playlist);
+    //  res.send(playlist);
+    Music.find().then(musics => res.send(musics));
 })
+
