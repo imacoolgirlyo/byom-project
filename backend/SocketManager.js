@@ -20,6 +20,10 @@ module.exports = function(socket){
 
         console.log("User is Connected" + user);
     })
+
+    socket.on('new music', (user, artist, title) => {
+      console.log(`nickname : ${user}, artist : ${artist}, title : ${title}`)
+    })
 }
 
 // function addUser(userList, user){

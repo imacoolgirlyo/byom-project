@@ -23,12 +23,12 @@ export default class Container extends Component{
         })
     }
     render(){
-        const { user } = this.props;
+        const { user, socket } = this.props;
         const { musics } = this.state;
         return(
             <div>
                 <PlayList musics={musics} />
-                <MusicInputForm user={user}/>
+                <MusicInputForm socket={socket} user={user}/>
             </div>
         )
     }
