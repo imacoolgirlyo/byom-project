@@ -21,8 +21,11 @@ module.exports = function(socket){
         console.log("User is Connected" + user);
     })
 
-    socket.on('new music', (user, artist, title) => {
-      console.log(`nickname : ${user}, artist : ${artist}, title : ${title}`)
+    socket.on('new music', data => {
+      // database에 저장 , broadcast 보내기
+      const { sender, artist, title } = data;
+      console.log(`nickname : ${sender}, artist : ${artist}, title : ${title}`);
+      io.emit('new notification', data);
     })
 }
 

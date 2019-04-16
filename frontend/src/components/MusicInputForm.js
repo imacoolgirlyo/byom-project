@@ -14,7 +14,7 @@ export default class MusicInputForm extends Component{
         const { artist, title } = this.state;
         console.log(`artist : ${this.state.artist}, title : ${this.state.title}`);
         // sender와 artist, title 모두 서버에 전송
-        socket.emit('new music', user, artist, title);
+        socket.emit('new music', {sender: user, artist, title});
         this.setState({
             artist: '',
             title: ''
