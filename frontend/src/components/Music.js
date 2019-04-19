@@ -10,10 +10,19 @@ export default class Music extends Component{
         }
         this.handleSelected = this.handleSelected.bind(this);
     }
-    handleSelected() {
-        const { _id } = this.props.currentMusic;
+    handleSelected(e) {
+        // selected : false (채크 되어 있지 않을 때)
+        const { _id, selected } =this.props.currentMusic;
+        if(selected === false){
         // server에 해당 id selected false -> true로 변경 callback은 playlist setState
-        this.props.handleSelectedMusic(_id);
+            this.props.handleAddCheck(_id);
+            this.setState({selected : true})
+        }else{
+            console.log('Remove Check');
+            // selected: true (체크 해제 하고 싶을 때, remove seleted css)
+            this.props.handleRemoveCheck(_id);
+        }
+        
     }
     render(){
         const { user } = this.props;
@@ -28,7 +37,7 @@ export default class Music extends Component{
                         <input
                         name="selected"
                         type="checkbox"
-                        value={this.state.selected}
+                        checked={this.state.selected}
                         onChange={this.handleSelected}
                         /> 
                     :

@@ -37,7 +37,6 @@ module.exports = function(socket){
       }).then((data) => {
         io.emit('new notification', data);
       })
-      
     })
 
     socket.on('selected by DJ', function(_id, callback){
@@ -46,5 +45,12 @@ module.exports = function(socket){
       .then((data) => {
         io.emit('music is selected', data);
       } )
+    })
+
+    socket.on('remove check', _id => {
+      Music.findByIdAndUpdate({_id : _id}, {selected : false}, {new : true})
+      .then((data) => {
+        io.emit('check is removed', data);
+      })
     })
 }
