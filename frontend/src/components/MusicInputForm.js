@@ -20,7 +20,6 @@ export default class MusicInputForm extends Component{
             artist: '',
             title: ''
         })
-        
     }
     // input focus에 벗어났을 때 validation 추가, 둘다 적어야함
     artistInputChange = (e) => {

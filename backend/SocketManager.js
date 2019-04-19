@@ -28,12 +28,23 @@ module.exports = function(socket){
       // database에 저장 , broadcast 보내기
       const { sender, artist, title, selected } = data;
       console.log(`SERVER GET : sender : ${sender}, artist : ${artist}, title : ${title}, selected: ${selected}`);
+      // id 까지 보내줘야함 
       Music.create({
         sender,
         artist,
         title,
         selected
+      }).then((data) => {
+        io.emit('new notification', data);
       })
-      io.emit('new notification', data);
+      
+    })
+
+    socket.on('selected by DJ', function(_id, callback){
+      console.log(_id);
+      Music.findByIdAndUpdate({ _id: _id }, {selected : true}, {new : true})
+      .then((data) => {
+        io.emit('music is selected', data);
+      } )
     })
 }
