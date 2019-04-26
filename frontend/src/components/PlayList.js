@@ -11,7 +11,7 @@ export default class PlayList extends Component{
                     currentMusic={currentMusic}
                     handleAddCheck={handleAddCheck}
                     handleRemoveCheck = {handleRemoveCheck}
-                    key={i}/>;
+                    key={i}/>
         })
     }
     render(){

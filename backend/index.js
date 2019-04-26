@@ -29,6 +29,35 @@ const playlist = [
         "title" : "야간비행"
     }
 ]
+const list = {
+    "result" : [
+        {
+            "id" : 1,
+            "title_ko" : "서울 재즈 페스티벌"
+        },
+        {
+            "id" : 2,
+            "title_ko" : "그린 플러그드 페스티벌"
+        },
+        {
+            "id" : 3,
+            "title_ko" : "울트라 뮤직 페스티벌"
+        },
+        {
+            "id" : 4,
+            "title_ko" : "뷰티풀 민트 라이프"
+        },
+        {
+            "id" : 5,
+            "title_ko" : "지니 뮤직 페스티벌"
+        },
+        {
+            "id" : 6,
+            "title_ko" : "월드 디제이 페스티벌"
+        }
+    ]
+}
+
 
 io.on('connection', SocketManager)
 
@@ -38,6 +67,11 @@ server.listen(PORT , ()=> {
 
 app.get('/playlist', function(req, res){
     //  res.send(playlist);
-    Music.find().then(musics => res.send(musics));
+    Music.find()
+    .then(musics => res.send(musics))
+    .catch(err => console.error(err));
 })
 
+app.get('/festival', function(req, res){
+    res.send(list);
+})

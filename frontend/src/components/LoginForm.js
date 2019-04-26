@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../resource/sass/LoginForm.scss';
 
 export default class LoginForm extends Component{
     constructor(props){
@@ -42,15 +43,27 @@ export default class LoginForm extends Component{
     render(){
         return(
             <div className="login">
-                <form onSubmit={this.handleSubmit}>
-                    <input
-                        type="text"
-                        placeholder="Your Cool Nickname"
-                        id="nickname"
-                        value={this.state.nickname}
-                        onChange ={this.handleChange}
-                        />
-                </form>
+                <div className="login-header">
+                    BYOM 설치 마법사
+                </div>
+                <div className="login-guide">
+                    <div className="user-info"> 사용자 정보 </div>
+                    <div className="user-info-detail"> 사용자의 닉네임을 입력하여 주십시오. </div>
+                </div>
+                <div className="form-container">
+                    <form className="login-form" onSubmit={this.handleSubmit}>
+                        <label> 닉네임(A) : </label>
+                        <input
+                            className="nickname-input"
+                            type="text"
+                            id="nickname"
+                            value={this.state.nickname}
+                            onChange ={this.handleChange}
+                            />
+                        <input type="submit" value="다음"/>
+                    </form>
+                </div>
+               
                 {/* <form onSubmit={this.handleSubmit} className="login__form">
                     <input 
                         type="text" 

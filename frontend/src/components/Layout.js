@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import io from 'socket.io-client';
 import LoginForm from './LoginForm';
 import Container from './Container';
+import '../resource/sass/Layout.scss';
 
 const socketURL = "http://localhost:3231";
 export default class Layout extends Component {
@@ -53,7 +54,6 @@ export default class Layout extends Component {
         const { socket, user } = this.state
         return(
             <div className="container">
-                <h1> {title} </h1>
                 {
                     !user ?
                     <LoginForm socket={socket} setUser={this.setUser}/>
