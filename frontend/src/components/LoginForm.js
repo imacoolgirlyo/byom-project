@@ -7,6 +7,7 @@ export default class LoginForm extends Component{
         this.state={
             nickname : ""
         }
+        this.handleTouch = this.handleTouch.bind(this);
     }
     // setUser = ({user, isUser}) => {
     //     console.log('After Creating User');
@@ -39,6 +40,11 @@ export default class LoginForm extends Component{
     setError = (error) => {
         this.setState({error})
     }
+    handleTouch(e){
+        const { socket } = this.props
+        console.log('touch!');
+        socket.emit('touch', 'nickname');
+    }
 
     render(){
         return(
@@ -52,15 +58,20 @@ export default class LoginForm extends Component{
                 </div>
                 <div className="form-container">
                     <form className="login-form" onSubmit={this.handleSubmit}>
-                        <label> 닉네임(A) : </label>
-                        <input
-                            className="nickname-input"
-                            type="text"
-                            id="nickname"
-                            value={this.state.nickname}
-                            onChange ={this.handleChange}
-                            />
-                        <input type="submit" value="다음"/>
+                        <div className="nickname-detail">
+                            <div> 닉네임(A) : </div>
+                            <input
+                                className="nickname-input"
+                                type="text"
+                                id="nickname"
+                                value={this.state.nickname}
+                                onChange ={this.handleChange}
+                                />
+                        </div>
+                        <button
+                        className="submit-Btn"
+                        onTouchStart={this.handleTouch}
+                         type="submit" > 다음 </button>
                     </form>
                 </div>
                

@@ -1,10 +1,11 @@
 const express = require('express');
+const db = require('./db');
 const app = express();
 const morgan= require('morgan');
 const cors = require('cors');
 var server = require('http').createServer(app)
 var io = module.exports.io = require('socket.io')(server)
-const db = require('./db');
+
 const Music = require('./models/Music');
 app.use(morgan("dev"));
 app.use(cors());

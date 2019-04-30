@@ -35,10 +35,15 @@
     }
 
     .form-container{
-
+        position: relative;
+        top: 50px;
+        .nickname-detail{
+            display: flex;
+        }
         .login-form{
-            top: 50px;
+            // top: 50px;
             width: 150px;
+            height: 30px;
             position: relative;
             margin: auto;
 
@@ -46,12 +51,17 @@
                 padding: 4px;
                 -webkit-appearance: none; 
                 -moz-appearance: none; 
+                cursor: pointer;
             }
             input:focus {
                 padding: 4px;
                 -webkit-appearance: none; 
                 -moz-appearance: none; 
                 outline: 0;
+             }
+
+            .submit-Btn{
+                cursor: pointer;
              }
         }
     }

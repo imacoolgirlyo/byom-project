@@ -4,6 +4,7 @@ import LoginForm from './LoginForm';
 import Container from './Container';
 import '../resource/sass/Layout.scss';
 
+// url 
 const socketURL = "http://localhost:3231";
 export default class Layout extends Component {
 
@@ -15,13 +16,16 @@ export default class Layout extends Component {
         };
     }
     componentDidMount(){
+        console.log('ipad hi');
         this.initSocket()
     }
     /*
 	*	Initializes socket event callbacks
 	*/
     initSocket = () => {
+        console.log('ipad tried');
         const socket = io(socketURL)
+        console.log(socket);
         socket.on('connect', ()=> {
             console.log('Connect');
         })

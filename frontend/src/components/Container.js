@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PlayList from './PlayList';
 import axios from 'axios';
 import MusicInputForm from './MusicInputForm';
+import '../resource/sass/Container.scss';
 
 export default class Container extends Component{
     constructor(props){
@@ -66,7 +67,7 @@ export default class Container extends Component{
         const { user, socket } = this.props;
         const { musics } = this.state;
         return(
-            <div>
+            <div className="chat-container">
                 <PlayList 
                 handleAddCheck = {this.handleAddCheck}
                 handleRemoveCheck = {this.handleRemoveCheck}
