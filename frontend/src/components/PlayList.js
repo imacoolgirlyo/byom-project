@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Music from './Music';
+import '../resource/sass/PlayList.scss';
 
 export default class PlayList extends Component{
     //user 이름이 dj 이면 선택, 수정 버튼 만들기 
@@ -16,7 +17,7 @@ export default class PlayList extends Component{
     }
     render(){
         return(
-            <div>
+            <div className="playlist-container">
                {this.playList()}
             </div>
         )

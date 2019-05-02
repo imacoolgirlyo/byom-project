@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './Music.css';
+import '../resource/sass/Music.scss';
 
 //DJ 인 경우, 선택 버튼, 해당 id 검색한 후 selected -> true 요청하기
 export default class Music extends Component{
@@ -28,7 +28,7 @@ export default class Music extends Component{
         const { user } = this.props;
         const { sender, artist, title, selected} = this.props.currentMusic;
         return(
-            <div className={selected ? 'selected' : ''}>
+            <div className={selected ? 'selected' : 'music'}>
                 <span> {sender}</span>
                 <span> {artist}</span>
                 <span> {title}</span>
