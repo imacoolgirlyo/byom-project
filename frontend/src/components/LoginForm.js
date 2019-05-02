@@ -90,32 +90,6 @@ export default class LoginForm extends Component{
                         </form>
                     </div>
                 </div>
-                {/* <div className="login-header">
-                    BYOM.exe
-                </div>
-                <div className="login-guide">
-                    <div className="user-info"> 사용자 정보 </div>
-                    <div className="user-info-detail"> 사용자의 닉네임을 입력하여 주십시오. </div>
-                </div>
-                <div className="form-container">
-                    <form className="login-form" onSubmit={this.handleSubmit}>
-                        <div className="nickname-detail">
-                            <div> 닉네임(A) : </div>
-                            <input
-                                className="nickname-input"
-                                type="text"
-                                id="nickname"
-                                value={this.state.nickname}
-                                onChange ={this.handleChange}
-                                />
-                        </div>
-                        <button
-                        className="submit-Btn"
-                        onTouchStart={this.handleTouch}
-                         type="submit" > 다음 </button>
-                    </form>
-                </div> */}
-               
             </div>
         )
     }
