@@ -1,69 +1,112 @@
 .login{
-    
     box-sizing: border-box;
     position: relative;
-    top: 100px;
-    width: 290px;
-    height: 400px;
-    margin : auto;
-    background-color: rgb(194,199,203);
+    margin: auto;
+    top: 111px;
+    width: 80%;
+    height: 435px;
+    background: #BDBEBD;
+    border-left: 1px solid white;
+    border-bottom: 1px solid black;
+    border-top: 1px solid white;
+    border-right: 1px solid black;
+    box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.75);
 
-    .login-header{
-        font-weight: 200;
-        background-color: rgb(6,7,129);
-        font-size: 14px;
-        position: relative;
-        top: 4px;
-        margin: 4px;
-        padding: 2px;
-        color: white;
-        border: solid black 1px;
-        text-align: center;
-    }
-    .login-guide{
-        font-weight: 400;
-        position: relative;
-        margin: 20px;
-
-        .user-info{
-            font-size: 20px;
-            margin-bottom: 20px;
-        }
-        .user-info-detail{
-            font-weight: 200;
-        }
-    }
-
-    .form-container{
-        position: relative;
-        top: 50px;
-    
-        .login-form{
-            // top: 50px;
-            width: 150px;
-            height: 30px;
-            position: relative;
-            margin: auto;
-
-            input{
-                padding: 4px;
-                -webkit-appearance: none; 
-                -moz-appearance: none; 
-                cursor: pointer;
-            }
-            input:focus {
-                padding: 4px;
-                -webkit-appearance: none; 
-                -moz-appearance: none; 
-                outline: 0;
-             }
-
-            .submit-Btn{
-                cursor: pointer;
-             }
-        }
-    }
-
-    
+    .login-inner{
+        border: 2px solid #BDBEBD;
+        height: 100%;
+    }  
 }
 
+.login-header{
+    display: flex;
+    flex-direction : row;
+    justify-content: space-between;
+    align-items: center;
+    height: 27px;
+    background: linear-gradient(to right, #000080, #1084d0);
+    font-size: 15px;
+    color: white;
+    font-family: Helvetica;
+    .login-header-column{
+        display: flex;
+        align-items: center;
+        .window-icon{
+            background-color: #BDBEBD;
+            width: 18px;
+            height: 18px;
+            border-top: 1px solid white;
+            border-left: 1px solid white;
+            border-bottom: 1px solid black;
+            border-right: 1px solid black;
+            text-align: center;
+            margin-right: 2px; 
+        }
+        .window-icon:last-child{
+            margin-right: 3px;
+        }
+    }
+    
+}
+.min{
+    background-image: url(../image/min.png);
+    background-size: auto 100%;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+}
+.max{
+    background-image: url(../image/max.png);
+    background-size: auto 100%;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+}
+.close{
+    background-image: url(../image/close.png);
+    background-size: auto 100%;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+}
+
+
+// .login-guide{
+//     font-weight: 400;
+//     position: relative;
+//     margin: 20px;
+
+//     .user-info{
+//         font-size: 20px;
+//         margin-bottom: 20px;
+//     }
+//     .user-info-detail{
+//         font-weight: 200;
+//     }
+// }
+
+// .form-container{
+//     position: relative;
+//     top: 50px;
+
+//     .login-form{
+//         // top: 50px;
+//         width: 150px;
+//         height: 30px;
+//         position: relative;
+//         margin: auto;
+
+//         input{
+//             padding: 4px;
+//             -webkit-appearance: none; 
+//             -moz-appearance: none; 
+//             cursor: pointer;
+//         }
+//         input:focus {
+//             padding: 4px;
+//             -webkit-appearance: none; 
+//             -moz-appearance: none; 
+//             outline: 0;
+//          }
+
+//         .submit-Btn{
+//             cursor: pointer;
+//          }
+//     }

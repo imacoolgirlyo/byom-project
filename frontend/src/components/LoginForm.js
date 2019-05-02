@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import '../resource/sass/LoginForm.scss';
+import LoginHeaderLogo from './atoms/LoginHeaderLogo';
 
+// username 서버로 보내기, 아이디가 중복되지 않으면 setUser로 nickname 보내기
 export default class LoginForm extends Component{
     constructor(props){
         super(props);
@@ -29,12 +31,10 @@ export default class LoginForm extends Component{
 
     handleSubmit = (e) => {
         e.preventDefault();
-        //user 이름을 socket으로 보낼거임, props : socket, setUser 사용 
         const { socket } = this.props
         const { nickname } = this.state
         console.log(nickname + " is submitted. ");
         socket.emit("VERIFY_USER", nickname, this.setUser);
-        // setUser는 emit 후, handler 
     }
 
     setError = (error) => {
@@ -49,8 +49,44 @@ export default class LoginForm extends Component{
     render(){
         return(
             <div className="login">
-                <div className="login-header">
-                    BYOM 설치 마법사
+                <div className="login-inner">
+                    <div className="login-header">
+                        {/* <div className="header-logo"></div> */}
+                        <div className='login-header-column'>
+                            <LoginHeaderLogo />
+                            <div>BYOM.exe</div>
+                        </div>
+                        <div className='login-header-column'>
+                            <div className="window-icon min"></div>
+                            <div className="window-icon max"></div>
+                            <div className="window-icon close"></div>
+                        </div>
+                        
+                    </div>
+                    <div className="login-content">
+                        <div className="content-info">
+                            <div> 중앙 초록 이미지</div>
+                            <div> 사용자 정보</div>
+                            <div> 사용자의 닉네임을 입력하여 주십시오</div>
+                        </div>
+                        <form className="content-form" onSubmit={this.handleSubmit}>
+                            <div>닉네임(A) :</div>
+                            <input
+                                className="nickname-input"
+                                type="text"
+                                id="nickname"
+                                value={this.state.nickname}
+                                onChange ={this.handleChange}
+                            />
+                            <button
+                            className="submit-Btn"
+                            onTouchStart={this.handleTouch}
+                            type="submit" > 다음 </button>
+                        </form>
+                    </div>
+                </div>
+                {/* <div className="login-header">
+                    BYOM.exe
                 </div>
                 <div className="login-guide">
                     <div className="user-info"> 사용자 정보 </div>
@@ -73,17 +109,8 @@ export default class LoginForm extends Component{
                         onTouchStart={this.handleTouch}
                          type="submit" > 다음 </button>
                     </form>
-                </div>
+                </div> */}
                
-                {/* <form onSubmit={this.handleSubmit} className="login__form">
-                    <input 
-                        type="text" 
-                        placeholder="My Cool Nickname"
-                        id="nickname"
-                        value={nickname}
-                        onChange={this.handleChange}
-                        />
-                </form> */}
             </div>
         )
     }
