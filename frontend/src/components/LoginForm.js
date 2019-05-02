@@ -54,7 +54,7 @@ export default class LoginForm extends Component{
                         {/* <div className="header-logo"></div> */}
                         <div className='login-header-column'>
                             <LoginHeaderLogo />
-                            <div>BYOM.exe</div>
+                            <div>Bring Your Own Music.exe</div>
                         </div>
                         <div className='login-header-column'>
                             <div className="window-icon min"></div>
@@ -65,23 +65,28 @@ export default class LoginForm extends Component{
                     </div>
                     <div className="login-content">
                         <div className="content-info">
-                            <div> 중앙 초록 이미지</div>
-                            <div> 사용자 정보</div>
-                            <div> 사용자의 닉네임을 입력하여 주십시오</div>
+                            <div className="content-green"> </div>
+                            <div className="content-user-info"> 사용자 정보</div>
+                            <div className="content-nickname-guide"> 사용자의 닉네임을 입력하여 주십시오</div>
                         </div>
                         <form className="content-form" onSubmit={this.handleSubmit}>
-                            <div>닉네임(A) :</div>
-                            <input
-                                className="nickname-input"
-                                type="text"
-                                id="nickname"
-                                value={this.state.nickname}
-                                onChange ={this.handleChange}
-                            />
-                            <button
-                            className="submit-Btn"
-                            onTouchStart={this.handleTouch}
-                            type="submit" > 다음 </button>
+                            <div className="content-form-main">
+                                <div className="form-label">닉네임(A) :</div>
+                                <input
+                                    className="form-input"
+                                    type="text"
+                                    id="nickname"
+                                    value={this.state.nickname}
+                                    onChange ={this.handleChange}
+                                />
+                            </div>
+                            <div className="content-form-extra">
+                                <div className='content-form-line'></div>
+                                <button
+                                className="form-submit"
+                                onTouchStart={this.handleTouch}
+                                type="submit" > 다음 > </button>
+                            </div>
                         </form>
                     </div>
                 </div>

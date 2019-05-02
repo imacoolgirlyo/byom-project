@@ -13,7 +13,7 @@
     box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.75);
 
     .login-inner{
-        border: 2px solid #BDBEBD;
+        // border: 1px solid #BDBEBD;
         height: 100%;
     }  
 }
@@ -28,6 +28,7 @@
     font-size: 15px;
     color: white;
     font-family: Helvetica;
+    
     .login-header-column{
         display: flex;
         align-items: center;
@@ -66,8 +67,82 @@
     background-position: 50% 50%;
     background-repeat: no-repeat;
 }
-
-
+.login-content{
+    box-sizing: border-box;
+    padding-top: 26px;
+    height: calc( 100% - 32px);
+    margin-top: 2px;
+    border: 2px solid #808080;
+    border-bottom: 2px solid white;
+    border-right: 2px solid white;
+    .content-info{
+        position: relative;
+        width: 240px;
+        margin: auto;
+        margin-bottom: 20px;
+        .content-green{
+            height: 125px;
+            background-color: #55ABAA;
+            border: 1px solid #000000;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            margin-bottom: 28px;
+        }
+        .content-user-info{
+            font-weight: 400;
+            font-size: 18px;
+            margin-bottom: 13px;
+        }
+        .content-nickname-guide{
+            font-weight: 300;
+            font-size: 13px;
+            margin-bottom: 13px;
+        }
+    }
+    .content-form{
+        position: relative;
+        width: 240px;
+        margin: auto;
+        .content-form-main{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 39px;
+            .form-label{
+                font-size: 14px;
+                font-family: Roboto;
+                margin-right: 10px;
+            }
+            .form-input{
+                width: 150px;
+                padding: 5px;
+                background: #FFFFFF;
+                box-shadow: 1px 1px 1px #FEFAFA, inset 1px 1px 1px rgba(7, 7, 7, 0.54);
+            }
+        }
+        .content-form-extra{
+            .content-form-line{
+                border: 1px solid #B3B1B1;
+                box-shadow: 0px 1px 1px #F2F2F2;
+            }
+            .form-submit{
+                margin-top: 24px;
+                float: right;
+                padding: 3px;
+                width: 90px;
+                background: #C4C4C4;
+                border: 1.2px solid #3F3F3F;
+                box-sizing: border-box;
+                box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.76), inset 2px 2px 2px #FFFFFF;
+            }
+        }
+        
+    }
+}
+// .form-label{
+            
+// }
+// .form-input{}
+// .form-submit{}
 // .login-guide{
 //     font-weight: 400;
 //     position: relative;
