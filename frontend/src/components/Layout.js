@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import io from 'socket.io-client';
 import LoginForm from './LoginForm';
 import Container from './Container';
 import '../resource/sass/Layout.scss';
+import LoginContainer from './Login';
 
 // socket과 초기 연결, pure 아이디 세팅 후 Container 로딩
 const socketURL = "http://localhost:3231";
@@ -35,14 +36,14 @@ export default class Layout extends Component {
     render(){
         const { socket, user } = this.state
         return(
-            <div>
+            <Fragment>
                 {
                     !user ?
-                    <LoginForm socket={socket} setUser={this.setUser}/>
+                    <LoginContainer socket={socket} setUser={this.setUser}/>
                     :
                     <Container socket={socket} user={user}/>
                 }
-            </div>
+            </Fragment>
         )
     }
 }
