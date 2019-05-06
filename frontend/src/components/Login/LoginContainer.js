@@ -5,7 +5,8 @@ export default class LoginContainer extends Component{
     constructor(props){
         super(props);
         this.state={
-            nickname : ""
+            nickname : "",
+            error : ""
         }
         this.handleTouch = this.handleTouch.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -21,8 +22,13 @@ export default class LoginContainer extends Component{
     //     }
     // }
 
-    setUser = (user) => {
-        this.props.setUser(user);
+    setUser = (user, canSet) => {
+        if(canSet){
+            this.setError("");
+            this.props.setUser(user);
+        }else{
+            this.setError('이미 있는 닉네임 입니다.')
+        }
     }
 
     handleChange(e){
@@ -38,6 +44,8 @@ export default class LoginContainer extends Component{
     }
 
     setError = (error) => {
+        console.log('이미 있는 닉네임입니다');
+        console.log(error);
         this.setState({error})
     }
     handleTouch(e){
@@ -49,6 +57,7 @@ export default class LoginContainer extends Component{
     render(){
         return(
           <LoginPresenter 
+            errMsg = {this.state.error}
             handleChange={this.handleChange}
             handleSubmit={this.handleSubmit}
             nickname={this.state.nickname}

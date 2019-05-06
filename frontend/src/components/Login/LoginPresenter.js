@@ -59,6 +59,7 @@ const LoginPresenter = (props) => {
                 value={props.nickname}
                 onChange ={props.handleChange}
               ></Input>
+              <div> {props.errMsg} </div>
               <SeperateLine></SeperateLine>
               <SubmitBtn> 다음 > </SubmitBtn>
             </LoginForm>

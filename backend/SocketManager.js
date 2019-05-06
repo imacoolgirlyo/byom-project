@@ -1,13 +1,17 @@
 const io = require('./index.js').io,
   db = require('./db'),
-  Music = require('./models/Music');
+  Music = require('./models/Music'),
+  User = require('./models/User');
 
 
 module.exports = function(socket){
     console.log('Socket.id '+ socket.id );
     // MongoDB에 nickname이 있는지 체크
-    socket.on("VERIFY_USER", function(nickname, callback){
-      callback(nickname)
+    socket.on("VERIFY_USER", (user, callback) => {
+        User.findOne({nickname : user})
+        .then( data => data=== null ? callback(user, true) : callback(user, false));
+        // connectedUsers = addUser(connectedUsers, user);
+        // socket.user = user;
     }
 		// if(isUser(connectedUsers, nickname)){
 		// 	callback({ isUser:true, user:null })
@@ -16,12 +20,14 @@ module.exports = function(socket){
 		// }
     )
     
-    socket.on('USER_CONNECTED', user => {
-        console.log('After Verfiying User, Adding User, User is Connected');
-        // connectedUsers = addUser(connectedUsers, user);
-        // socket.user = user;
-
-        console.log("User is Connected" + user);
+    socket.on('NICKNAME_SAVED', (nickname, callback) => {
+      User.create({nickname})
+        .then( data => {
+          console.log('nickname is saved safely');
+          callback(data);
+        }).catch( err => console.error(err));
+      
+        console.log("User is Connected" + nickname);
     })
 
     socket.on('new music', data => {

@@ -26,11 +26,17 @@ export default class Layout extends Component {
         })
         this.setState({socket})
     }
+    // db에 저장할 차례
 
+    setUserCallback =(data) => {
+        console.log(data.nickname); // {id: , nickname:}
+        this.setState({user : data.nickname});
+    }
    setUser = (user) => {
+       console.log(user);
        const { socket } = this.state
-       socket.emit('USER_CONNECTED' , user);
-       this.setState({user})
+       socket.emit('NICKNAME_SAVED' , user, this.setUserCallback);
+    //    this.setState({user})
    }
 
     render(){
