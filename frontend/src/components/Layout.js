@@ -1,9 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import io from 'socket.io-client';
-import LoginForm from './LoginForm';
-import Container from './Container';
-import '../resource/sass/Layout.scss';
 import LoginContainer from './Login';
+import PlaylistContainer from './Playlist/PlaylistContainer';
 
 // socket과 초기 연결, pure 아이디 세팅 후 Container 로딩
 const socketURL = "http://localhost:3231";
@@ -12,7 +10,8 @@ export default class Layout extends Component {
         super(props);
         this.state = {
             socket : null,
-            user : null
+            user : null,
+            connectMsg : ''
         };
     }
     componentDidMount(){
@@ -23,8 +22,14 @@ export default class Layout extends Component {
         const socket = io(socketURL)
         socket.on('connect', ()=> {
             console.log('Connect');
+            this.setState({socket})
         })
-        this.setState({socket})
+
+        socket.on('connect_error', () => {
+            this.setState({connectMsg : '연결이 되지 않습니다.'})
+            console.log('연결이 되지 않습니다.');
+        })
+        
     }
     // db에 저장할 차례
 
@@ -47,7 +52,8 @@ export default class Layout extends Component {
                     !user ?
                     <LoginContainer socket={socket} setUser={this.setUser}/>
                     :
-                    <Container socket={socket} user={user}/>
+                    <PlaylistContainer socket={socket} user={user}/>
+                    // <PlaylistContainer socket={socket} user={user}/>
                 }
             </Fragment>
         )
