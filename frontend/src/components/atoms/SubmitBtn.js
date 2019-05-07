@@ -3,6 +3,8 @@ import styled from 'styled-components'
 
 export const SubmitBtn = styled('button')`
   margin-top: 24px;
+  padding-top: 3px;
+  padding-bottom : 3px;
   float : right;
   width : 90px;
   background: #C4C4C4;

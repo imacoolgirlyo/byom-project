@@ -50,15 +50,6 @@ export default class Container extends Component{
                 handleSubmit={this.handleSubmit}
                 >
             </PlaylistPresenter>
-            // <div className="chat-container">
-            //     <PlayList 
-            //     handleAddCheck = {this.handleAddCheck}
-            //     handleRemoveCheck = {this.handleRemoveCheck}
-            //     socket={socket} 
-            //     user={user} 
-            //     musics={musics} />
-            //     <MusicInputForm socket={socket} user={user}/>
-            // </div>
         )
     }
 }

@@ -16,7 +16,7 @@ export const WindowBox = styled.div`
   margin: auto;
   top: 40px;
   width: 80%;
-  height: 435px;
+  height: 475px;
   background: #BDBEBD;
   border-left: 1px solid white;
   border-bottom: 1px solid black;
