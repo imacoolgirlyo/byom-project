@@ -12,13 +12,8 @@ module.exports = function(socket){
         .then( data => data=== null ? callback(user, true) : callback(user, false));
         // connectedUsers = addUser(connectedUsers, user);
         // socket.user = user;
-    }
-		// if(isUser(connectedUsers, nickname)){
-		// 	callback({ isUser:true, user:null })
-		// }else{
-		// 	callback({ isUser:false, user:createUser({name:nickname})})
-		// }
-    )
+    
+    });
     
     socket.on('NICKNAME_SAVED', (nickname, callback) => {
       User.create({nickname})
@@ -32,14 +27,15 @@ module.exports = function(socket){
 
     socket.on('new music', data => {
       // database에 저장 , broadcast 보내기
-      const { sender, artist, title, selected } = data;
-      console.log(`SERVER GET : sender : ${sender}, artist : ${artist}, title : ${title}, selected: ${selected}`);
+      const { sender, artist, title, isPlayed, isPlaying } = data;
+      console.log(`SERVER GET : sender : ${sender}, artist : ${artist}, title : ${title}, isPlayed: ${isPlayed}`);
       // id 까지 보내줘야함 
       Music.create({
         sender,
         artist,
         title,
-        selected
+        isPlayed,
+        isPlaying
       }).then((data) => {
         io.emit('new notification', data);
       })

@@ -4,7 +4,7 @@ import { WindowBox, WindowHeader, WindowContentWrapper } from '../window/Window'
 import { Input } from '../atoms/Input';
 import { InputLabel} from '../atoms/InputLabel';
 import { SubmitBtn } from '../atoms/SubmitBtn';
-import { MusicPresenter } from './Music/MusicPresenter';
+import  Music from './Music';
 
 const Form = styled.form`
   padding-top : 10px;
@@ -32,15 +32,14 @@ const InputBlock = styled.div`
  align-items: center;
 `;
 // musics 받고, input onChange, onSubmit 들 props로 input 값 처리
-const PlaylistPresenter = ({musics, user, handleInputChange, handleSubmit}) => {
+const PlaylistPresenter = ({musics, artist, title, handleInputChange, handleSubmit, checkScrollPosition}) => {
   return(
     <WindowBox>
       <WindowHeader name="Bring Your Own music.exe"/>
       <WindowContentWrapper>
-        <Musics>
+        <Musics onScroll={checkScrollPosition}>
         {musics.map(music => {
-          console.log(music);
-          return <MusicPresenter 
+          return <Music
           id={music.id}
           artist = {music.artist}
           sender= {music.sender}
@@ -48,14 +47,23 @@ const PlaylistPresenter = ({musics, user, handleInputChange, handleSubmit}) => {
           selected={music.selected} />
         })}
         </Musics>
+
       <Form onSubmit={handleSubmit}>
         <InputBlock>
           <InputLabel> Artist(B) : </InputLabel>
-          <Input onChange={handleInputChange}></Input>
+            <Input 
+            onChange={handleInputChange}
+            value={artist}
+            name="artist"
+            ></Input>
         </InputBlock>
         <InputBlock>
           <InputLabel> Title(C) : </InputLabel>
-          <Input onChange={handleInputChange}></Input>
+          <Input 
+          onChange={handleInputChange}
+          value={title}
+          name="title"
+          ></Input>
         </InputBlock>
         <SubmitBtn> Submit </SubmitBtn>
       </Form>

@@ -2,14 +2,19 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import PlaylistPresenter from './PlaylistPresenter';
 
-
 // musics 데이터: state,  input change, submit handler 필요
 export default class Container extends Component{
     constructor(props){
         super(props);
         this.state={
-            musics: []
+            musics: [],
+            artist: '',
+            title : '',
+            isPlayed: false,
+            isPlaying : false,
+            scrollPosition : 0
         }
+        this.addMusictoPlayList = this.addMusictoPlayList.bind(this);
     }
     componentDidMount() {
         const { socket } = this.props;
@@ -21,8 +26,6 @@ export default class Container extends Component{
             console.log(err);
         })
         socket.on('new notification', this.addMusictoPlayList);
-        socket.on('music is selected', this.toggleMusicCheck);
-        socket.on('check is removed', this.toggleMusicCheck);
     }
 
     componentWillUnmount(){
@@ -30,35 +33,57 @@ export default class Container extends Component{
         socket.removeAllListeners();
     }
 
-    handleInputChange = () => {
-        console.log('handleInput');
-    
+    handleInputChange = (e) => {
+        let name = e.target.name;
+        name === 'artist' ? 
+        this.setState({artist : e.target.value})
+        :
+        this.setState({title : e.target.value})
     }
     // socket으로 보내기
-    handleSubmit = () => {
-        console.log('handleSubmit');
+    handleSubmit = (e) => {
+        e.preventDefault();
+        const { user, socket } = this.props;
+        const { artist, title, isPlayed, isPlaying } = this.state;
+        socket.emit('new music', {sender: user, artist, title, isPlayed, isPlaying});
+        this.setState({
+            artist: '',
+            title: ''
+        })
+    }
+
+    addMusictoPlayList = data => {
+    this.setState(prevState => ({
+        musics: [...prevState.musics, data]
+    }))
+    }
+
+    checkScrollPosition = (e) => {
+        let ele = e.target;
+        // console.log(ele.scrollTop);
+        // console.log(ele.scrollHeight)
+        let b = ele.scrollHeight - ele.clientHeight;
+        console.log('postion is '+ b);
+
     }
 
     render(){
-        const { user, socket } = this.props;
-        const { musics } = this.state;
+        const { musics, artist, title } = this.state;
         return(
             <PlaylistPresenter 
                 musics={musics}
-                user={user} // input을 보낼 때
+                artist={artist}
+                title={title}
                 handleInputChange={this.handleInputChange}
                 handleSubmit={this.handleSubmit}
+                checkScrollPosition = {this.checkScrollPosition}
                 >
             </PlaylistPresenter>
         )
     }
 }
 
-    // addMusictoPlayList(data) {
-    //     this.setState(prevState => ({
-    //         musics: [...prevState.musics, data]
-    //     }))
-    // }
+
 
     // handleAddCheck (_id) {
     //     const { socket } = this.props;

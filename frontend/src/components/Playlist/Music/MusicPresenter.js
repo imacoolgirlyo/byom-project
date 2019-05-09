@@ -18,23 +18,21 @@ const MusicLogo = () => {
   }
 
 const MusicInfo = styled.div`
-  
 `;
 
 const MusicSender = styled.div`
   font-size: 10px;
 `;
 
-export const MusicPresenter = ({id, sender, artist, title, selected}) => {
+const MusicPresenter = ({id, sender, artist, title, selected}) => {
   return(
     <Music>
       <MusicColumn>
         <MusicLogo/>
       </MusicColumn>
-
       <MusicColumn>
         <MusicInfo>
-          {artist}- {title}.mp3
+          {artist} - {title}.mp3
         </MusicInfo>
         <MusicSender>
           by {sender}
@@ -44,6 +42,6 @@ export const MusicPresenter = ({id, sender, artist, title, selected}) => {
   )
 }
 
-
+export default MusicPresenter;
 
 

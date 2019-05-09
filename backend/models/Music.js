@@ -10,7 +10,10 @@ const MusicSchema = new mongoose.Schema({
     title: {
         type : String
     },
-    selected : {
+    isPlayed : {
+        type : Boolean
+    },
+    isPlaying : {
         type : Boolean
     }
 })
