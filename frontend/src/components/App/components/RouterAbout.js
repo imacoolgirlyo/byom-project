@@ -1,6 +1,6 @@
 import React from 'react';
-import docu from '../../resource/image/docu.png'
-import '../../resource/sass/detail/RouterAbout.scss';
+import docu from 'resource/image/docu.png'
+import 'resource/sass/RouterAbout.scss';
 
 function RouterAbout() {
     // Import result is the URL of your image

@@ -1,6 +1,6 @@
 import React from 'react';
-import byom from '../../resource/image/byom.png'
-import '../../resource/sass/detail/RouterMain.scss';
+import byom from 'resource/image/byom.png'
+import 'resource/sass/RouterMain.scss';
 
 function RouterMain() {
     // Import result is the URL of your image

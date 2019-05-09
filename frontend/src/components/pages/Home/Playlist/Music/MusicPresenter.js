@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import cd from '../../../resource/image/cd.png'
+import cd from 'resource/image/cd.png'
 import './Logo.scss';
 
 const Music = styled.div`

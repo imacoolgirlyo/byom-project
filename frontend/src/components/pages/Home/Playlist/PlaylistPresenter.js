@@ -1,9 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import styled from 'styled-components';
-import { WindowBox, WindowHeader, WindowContentWrapper } from '../window/Window';
-import { Input } from '../atoms/Input';
-import { InputLabel} from '../atoms/InputLabel';
-import { SubmitBtn } from '../atoms/SubmitBtn';
+import { WindowHeader, WindowContentWrapper } from 'components/App/components/window/Window';
+import { SubmitBtn, SeperateLine, Input, InputLabel } from 'components/commons';
 import  Music from './Music';
 
 const Form = styled.form`
@@ -34,7 +32,7 @@ const InputBlock = styled.div`
 // musics 받고, input onChange, onSubmit 들 props로 input 값 처리
 const PlaylistPresenter = ({musics, artist, title, handleInputChange, handleSubmit, checkScrollPosition}) => {
   return(
-    <WindowBox>
+    <Fragment>
       <WindowHeader name="Bring Your Own music.exe"/>
       <WindowContentWrapper>
         <Musics onScroll={checkScrollPosition}>
@@ -68,7 +66,7 @@ const PlaylistPresenter = ({musics, artist, title, handleInputChange, handleSubm
         <SubmitBtn> Submit </SubmitBtn>
       </Form>
       </WindowContentWrapper>
-    </WindowBox>
+    </Fragment>
 
   )
 }

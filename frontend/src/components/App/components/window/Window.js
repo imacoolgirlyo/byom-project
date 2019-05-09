@@ -1,6 +1,6 @@
 import React, {Fragment} from 'react'
 import styled from 'styled-components'
-import LoginHeaderLogo from '../atoms/LoginHeaderLogo';
+import LoginHeaderLogo from '../LoginHeaderLogo';
 
 // 구조
 {/* <WindowBox>

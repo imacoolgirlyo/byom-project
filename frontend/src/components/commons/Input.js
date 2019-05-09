@@ -1,7 +1,7 @@
 import React, {Fragment}from 'react'
 import styled from 'styled-components'
 
-export const Input = styled('input')`
+const Input = styled('input')`
   margin-top : 5px;
   margin-bottom : 5px;
   font-size: 16px;
@@ -10,3 +10,5 @@ export const Input = styled('input')`
   background: #FFFFFF;
   box-shadow: 1px 1px 1px #FEFAFA, inset 1px 1px 1px rgba(7, 7, 7, 0.54);
 `;
+
+export default Input;

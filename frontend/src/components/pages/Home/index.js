@@ -5,7 +5,7 @@ import PlaylistContainer from './Playlist/PlaylistContainer';
 
 // socket과 초기 연결, pure 아이디 세팅 후 Container 로딩
 const socketURL = "http://localhost:3231";
-export default class Layout extends Component {
+export default class Home extends Component {
     constructor(props){
         super(props);
         this.state = {
