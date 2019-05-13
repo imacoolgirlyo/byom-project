@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import io from 'socket.io-client';
+import { WindowHeader } from 'components/App/components/window/Window';
 import LoginContainer from './Login';
 import PlaylistContainer from './Playlist/PlaylistContainer';
 
@@ -48,12 +49,12 @@ export default class Home extends Component {
         const { socket, user } = this.state
         return(
             <Fragment>
+                <WindowHeader name="Bring Your Own Music.exe"/>
                 {
                     !user ?
                     <LoginContainer socket={socket} setUser={this.setUser}/>
                     :
                     <PlaylistContainer socket={socket} user={user}/>
-                    // <PlaylistContainer socket={socket} user={user}/>
                 }
             </Fragment>
         )

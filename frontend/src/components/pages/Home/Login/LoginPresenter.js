@@ -12,7 +12,6 @@ const LoginForm = styled.form`
 const LoginPresenter = (props) => {
   return (
     <Fragment>
-    <WindowHeader name="Bring Your Own Music.exe"/>
     <WindowContentWrapper>
       <div className="content-info">
           <div className="content-green"> </div>

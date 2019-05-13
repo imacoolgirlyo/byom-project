@@ -24,7 +24,7 @@ const MusicSender = styled.div`
   font-size: 10px;
 `;
 
-const MusicPresenter = ({id, sender, artist, title, selected}) => {
+const MusicPresenter = ({id, sender, artist, title, NowPlaying, isPlayed, isPlaying}) => {
   return(
     <Music>
       <MusicColumn>

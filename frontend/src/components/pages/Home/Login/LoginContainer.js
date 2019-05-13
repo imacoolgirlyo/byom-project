@@ -12,16 +12,7 @@ export default class LoginContainer extends Component{
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
-    // setUser = ({user, isUser}) => {
-    //     console.log('After Creating User');
-    //     if(isUser){
-    //         this.setError('User name taken')
-    //     }else{
-    //         this.setError("");
-    //         this.props.setUser(user);
-    //     }
-    // }
-
+    
     setUser = (user, canSet) => {
         if(canSet){
             this.setError("");

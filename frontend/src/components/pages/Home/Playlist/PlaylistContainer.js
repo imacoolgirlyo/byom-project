@@ -1,17 +1,18 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import axios from 'axios';
+import { WindowContentWrapper } from 'components/App/components/window/Window';
 import PlaylistPresenter from './PlaylistPresenter';
+import MusicInputPresenter from './MusicInputPresenter';
 
 // musics 데이터: state,  input change, submit handler 필요
-export default class Container extends Component{
+export default class PlaylistContainer extends Component{
     constructor(props){
         super(props);
         this.state={
             musics: [],
             artist: '',
             title : '',
-            isPlayed: false,
-            isPlaying : false,
+            NowPlaying: '',
             scrollPosition : 0
         }
         this.addMusictoPlayList = this.addMusictoPlayList.bind(this);
@@ -53,6 +54,9 @@ export default class Container extends Component{
     }
 
     addMusictoPlayList = data => {
+        // data.sender와 닉네임이 동일할 때 (본인) 스크롤 가장 아래로
+        // 동일하지 않으면(타인이 올림) 새로운 음악 버튼 
+        console.log(data);
     this.setState(prevState => ({
         musics: [...prevState.musics, data]
     }))
@@ -66,24 +70,29 @@ export default class Container extends Component{
         console.log('postion is '+ b);
 
     }
+    // handleClick 
 
     render(){
-        const { musics, artist, title } = this.state;
+        const { musics, artist, title, NowPlaying } = this.state;
         return(
+            <WindowContentWrapper>
             <PlaylistPresenter 
                 musics={musics}
+                NowPlaying={NowPlaying}
+                handleClick={this.handleClick}
+                checkScrollPosition = {this.checkScrollPosition}
+                >
+            </PlaylistPresenter>
+            <MusicInputPresenter
                 artist={artist}
                 title={title}
                 handleInputChange={this.handleInputChange}
                 handleSubmit={this.handleSubmit}
-                checkScrollPosition = {this.checkScrollPosition}
-                >
-            </PlaylistPresenter>
+             />
+            </WindowContentWrapper>
         )
     }
 }
-
-
 
     // handleAddCheck (_id) {
     //     const { socket } = this.props;

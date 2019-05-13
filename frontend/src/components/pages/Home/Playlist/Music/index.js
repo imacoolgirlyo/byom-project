@@ -1,2 +1,2 @@
-import MusicPresenter from './MusicPresenter';
-export default MusicPresenter;
+import MusicContainer from './MusicContainer';
+export default MusicContainer;
