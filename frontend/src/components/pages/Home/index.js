@@ -39,10 +39,7 @@ export default class Home extends Component {
         this.setState({user : data.nickname});
     }
    setUser = (user) => {
-       console.log(user);
-       const { socket } = this.state
-       socket.emit('NICKNAME_SAVED' , user, this.setUserCallback);
-    //    this.setState({user})
+        this.setState({user})
    }
 
     render(){

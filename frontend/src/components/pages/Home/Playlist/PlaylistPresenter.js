@@ -1,6 +1,6 @@
-import React, { Component, Fragment } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import  Music from './Music';
+import  Music from './MusicOne';
 
 const Musics = styled.div`
   overflow : scroll;
@@ -10,16 +10,20 @@ const Musics = styled.div`
   color : white;
 `;
 
-const PlaylistPresenter = ({musics, NowPlaying, handleClick, checkScrollPosition}) => {
+const PlaylistPresenter = (
+  {user, musics, NowPlaying, handleClick, checkScrollPosition, handleNowPlaying}) => {
   return(
     <Musics onScroll={checkScrollPosition}>
       {musics.map(music => {
         return <Music
-        id={music.id}
+        user={user}
+        id={music._id}
         sender= {music.sender}
         artist = {music.artist}
         title={music.title}
-        NowPlaying={NowPlaying} />
+        NowPlaying={NowPlaying}
+        handleNowPlaying={handleNowPlaying}
+         />
       })}
     </Musics>
   )

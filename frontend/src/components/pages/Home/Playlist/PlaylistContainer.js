@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
 import { WindowContentWrapper } from 'components/App/components/window/Window';
 import PlaylistPresenter from './PlaylistPresenter';
@@ -16,6 +16,7 @@ export default class PlaylistContainer extends Component{
             scrollPosition : 0
         }
         this.addMusictoPlayList = this.addMusictoPlayList.bind(this);
+        this.handleNowPlaying = this.handleNowPlaying.bind(this);
     }
     componentDidMount() {
         const { socket } = this.props;
@@ -70,17 +71,22 @@ export default class PlaylistContainer extends Component{
         console.log('postion is '+ b);
 
     }
-    // handleClick 
+    handleNowPlaying(id){
+        this.setState({NowPlaying : id});
+    }
 
     render(){
+        const { user } = this.props;
         const { musics, artist, title, NowPlaying } = this.state;
         return(
             <WindowContentWrapper>
-            <PlaylistPresenter 
+            <PlaylistPresenter
+                user={user}
                 musics={musics}
                 NowPlaying={NowPlaying}
                 handleClick={this.handleClick}
                 checkScrollPosition = {this.checkScrollPosition}
+                handleNowPlaying={this.handleNowPlaying}
                 >
             </PlaylistPresenter>
             <MusicInputPresenter

@@ -7,6 +7,7 @@ import RouterMain from './components/RouterMain';
 import 'resource/sass/App.scss';
 import { WindowBox } from './components/window/Window' 
 
+
 class App extends Component {
   render() {
     return (

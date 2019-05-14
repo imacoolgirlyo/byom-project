@@ -13,13 +13,18 @@ export default class LoginContainer extends Component{
         this.handleSubmit = this.handleSubmit.bind(this);
     }
     
-    setUser = (user, canSet) => {
-        if(canSet){
-            this.setError("");
-            this.props.setUser(user);
-        }else{
-            this.setError('이미 있는 닉네임 입니다.')
-        }
+    // setUser = (user, canSet) => {
+    //     if(canSet){
+    //         this.setError("");
+    //         this.props.setUser(user);
+    //     }else{
+    //         this.setError('이미 있는 닉네임 입니다.')
+    //     }
+    // }
+
+    setUser = (nickname) => {
+        this.props.setUser(nickname);
+
     }
 
     handleChange(e){
@@ -31,7 +36,7 @@ export default class LoginContainer extends Component{
         const { socket } = this.props
         const { nickname } = this.state
         console.log(nickname + " is submitted. ");
-        socket.emit("VERIFY_USER", nickname, this.setUser);
+        socket.emit("NICKNAME_SAVED", nickname, this.setUser);
     }
 
     setError = (error) => {

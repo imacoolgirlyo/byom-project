@@ -1,6 +1,6 @@
-import React, { Component, Fragment } from 'react';
+import React, { Fragment } from 'react';
 import styled from 'styled-components'
-import { WindowHeader, WindowContentWrapper } from 'components/App/components/window/Window';
+import {WindowContentWrapper } from 'components/App/components/window/Window';
 import { SubmitBtn, SeperateLine, Input, InputLabel } from 'components/commons';
 
 const LoginForm = styled.form`

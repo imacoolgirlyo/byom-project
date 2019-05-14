@@ -1,29 +1,38 @@
-import React, { Component, Fragment } from 'react';
-import styled from 'styled-components';
+import React, { Component } from 'react';
 import MusicPresenter from './MusicPresenter';
 
 // music의 isPlaying, isPlayed
 class MusicContainer extends Component{
   constructor(props){
-    this.state={
+    super(props);
+    this.state = {
       isPlayed : false,
       isPlaying : false
     }
-
+    this.handlePlayBtn = this.handlePlayBtn.bind(this);
   }
+
+  handlePlayBtn(e){
+    console.log('playbtn is clicked');
+    console.log(e.target);
+  }
+
   render(){
-    const { id, sender ,artist, title, NowPlaying } = this.props;
+    const { user, id, sender ,artist, title, NowPlaying } = this.props;
     const { isPlayed, isPlaying } = this.state;
     return(
-      <MusicPresenter
-        id={id}
-        sender={sender}
-        artist={artist}
-        title={title}
-        NowPlaying={NowPlaying}
-        isPlayed={isPlayed}
-        isPlaying= {isPlaying}
-       />
+      <MusicPresenter onClick={this.handlePlayBtn}
+          user={user}
+          key={id}
+          id={id}
+          sender={sender}
+          artist={artist}
+          title={title}
+          NowPlaying={NowPlaying}
+          isPlayed={isPlayed}
+          isPlaying= {isPlaying}
+          handlePlayBtn={this.handlePlayBtn}
+        />
     )
   }
 }

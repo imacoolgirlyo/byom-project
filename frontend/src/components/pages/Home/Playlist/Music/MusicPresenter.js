@@ -1,6 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import cd from 'resource/image/cd.png'
+import { FaPlay } from 'react-icons/fa';
+
 import './Logo.scss';
 
 const Music = styled.div`
@@ -24,7 +26,9 @@ const MusicSender = styled.div`
   font-size: 10px;
 `;
 
-const MusicPresenter = ({id, sender, artist, title, NowPlaying, isPlayed, isPlaying}) => {
+
+const MusicPresenter = (
+  {user, id, sender, artist, title, NowPlaying, isPlayed, isPlaying, handlePlayBtn}) => {
   return(
     <Music>
       <MusicColumn>
@@ -38,6 +42,12 @@ const MusicPresenter = ({id, sender, artist, title, NowPlaying, isPlayed, isPlay
           by {sender}
         </MusicSender>
       </MusicColumn>
+      {
+        user.nickname === "DJ"?
+        <div ><FaPlay/></div>
+        :
+        null
+      }
     </Music>
   )
 }
