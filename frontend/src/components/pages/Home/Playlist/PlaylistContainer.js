@@ -23,11 +23,13 @@ export default class PlaylistContainer extends Component{
         axios.get('http://localhost:3231/playlist')
         .then(res => {
             this.setState({musics : res.data});
+            console.log(this.state.musics);
         })
         .catch(function(err){
             console.log(err);
         })
         socket.on('new notification', this.addMusictoPlayList);
+        socket.on('music clicked', this.handleNowPlaying);
     }
 
     componentWillUnmount(){
@@ -47,7 +49,7 @@ export default class PlaylistContainer extends Component{
         e.preventDefault();
         const { user, socket } = this.props;
         const { artist, title, isPlayed, isPlaying } = this.state;
-        socket.emit('new music', {sender: user, artist, title, isPlayed, isPlaying});
+        socket.emit('new music', {sender: user.nickname, artist, title, isPlayed, isPlaying});
         this.setState({
             artist: '',
             title: ''
@@ -65,22 +67,41 @@ export default class PlaylistContainer extends Component{
 
     checkScrollPosition = (e) => {
         let ele = e.target;
-        // console.log(ele.scrollTop);
-        // console.log(ele.scrollHeight)
         let b = ele.scrollHeight - ele.clientHeight;
         console.log('postion is '+ b);
 
     }
-    handleNowPlaying(id){
-        this.setState({NowPlaying : id});
+    handleNowPlaying(data){
+        const {musics} = this.state;
+        // 플레이할 노래 db에서 isplaying로 바뀌고 바뀐 music 데이터 받은 상태
+        // isPlaying인 애 NowPlaying에 저장 ? 일단 db로 전체 리스트 다 렌더링하는 걸 고려
+        this.setState({
+            musics: musics.map(music => 
+                music._id === data._id ?
+                {...music, ...data}
+                : music
+            )
+        })
+        console.log(musics);
     }
-
+    //     toggleMusicCheck(data){
+    //     const { musics } = this.state;
+    //     this.setState({
+    //         musics : musics.map(music=> 
+    //             music._id === data._id ?
+    //             {...music, ...data}
+    //             : music
+    //         )
+    //     })
+    // }
+    
     render(){
-        const { user } = this.props;
+        const { user, socket } = this.props;
         const { musics, artist, title, NowPlaying } = this.state;
         return(
             <WindowContentWrapper>
             <PlaylistPresenter
+                socket={socket}
                 user={user}
                 musics={musics}
                 NowPlaying={NowPlaying}
@@ -98,6 +119,7 @@ export default class PlaylistContainer extends Component{
             </WindowContentWrapper>
         )
     }
+    
 }
 
     // handleAddCheck (_id) {

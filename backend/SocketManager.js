@@ -41,12 +41,11 @@ module.exports = function(socket){
       })
     })
 
-    socket.on('selected by DJ', function(_id, callback){
-      console.log(_id);
-      Music.findByIdAndUpdate({ _id: _id }, {selected : true}, {new : true})
-      .then((data) => {
-        io.emit('music is selected', data);
-      } )
+    socket.on('SELECT_MUSIC', function(_id, callback){
+      Music.findByIdAndUpdate({ _id: _id }, {isPlaying: true}, {new : true})
+      .then(data => { 
+        io.emit('music clicked', data);
+      })
     })
 
     socket.on('remove check', _id => {

@@ -1,9 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import  Music from './MusicOne';
+// import Music from './Music';
 
 const Musics = styled.div`
-  overflow : scroll;
+  overflow-y : scroll;
   height : 300px;
   border : 0;
   background-color : black;
@@ -11,20 +12,23 @@ const Musics = styled.div`
 `;
 
 const PlaylistPresenter = (
-  {user, musics, NowPlaying, handleClick, checkScrollPosition, handleNowPlaying}) => {
+  {socket, user, musics, NowPlaying, handleClick, checkScrollPosition, handleNowPlaying}) => {
   return(
     <Musics onScroll={checkScrollPosition}>
       {musics.map(music => {
-        return <Music
+        return (
+        <Music
+        socket={socket}
         user={user}
         id={music._id}
         sender= {music.sender}
         artist = {music.artist}
+        isPlaying = {music.isPlaying}
         title={music.title}
         NowPlaying={NowPlaying}
         handleNowPlaying={handleNowPlaying}
          />
-      })}
+      )})}
     </Musics>
   )
 }

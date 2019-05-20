@@ -9,7 +9,6 @@ const Music = styled.div`
   display: flex;
   padding : 5px;
   margin : 3px;
-
 `;
 const MusicColumn = styled.div`
 `;

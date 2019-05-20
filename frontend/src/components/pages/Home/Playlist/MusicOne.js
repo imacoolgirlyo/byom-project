@@ -9,6 +9,7 @@ const MusicLogo = () => {
     return <img className="logo" src={cd} alt="cd"/>
   }
 
+// 각각 Music마다 socket이 있는게 괜찮나? 아님 위에서 관리하는게 더 좋나?
 class Music extends Component{
   constructor(props){
     super(props);
@@ -21,28 +22,27 @@ class Music extends Component{
   }
 
   handlePlayBtn(e){
-    const {isPlaying} = this.state;
-    const {handleNowPlaying, id} = this.props;
-    console.log(isPlaying);
-    if(isPlaying === false){
-      this.setState(
-        {isPlaying : true,
-         playingID : id
-        });
-      handleNowPlaying(id);
-    }
-  }
+    const {isPlaying, isPlayed} = this.state;
+    const {handleNowPlaying, id, socket} = this.props;
 
+    socket.emit('SELECT_MUSIC', id, (data)=> {
+      console.log(data._id);
+      if(id=== data._id && isPlayed === false){
+        this.setState({isPlaying : true});
+      }
+    })
+  }
+  
   render(){
-    const { id, artist, title, sender, user, NowPlaying} = this.props;
-    const playBtnClass = classNames({
+    const { id, artist, title, sender, user, isPlaying, NowPlaying} = this.props;
+    const musicClass = classNames({
       playBtn : true,
-      'isPlaying' : this.state.isPlaying,
+      'isPlaying' : isPlaying,
       'isPlayed' : this.state.isPlayed
     })
 
     return(
-        <div>
+        <div className={musicClass}>
           <div className="music-column">
             <MusicLogo/>
           </div>
@@ -52,14 +52,14 @@ class Music extends Component{
           </div>
           {
             user.nickname === "DJ"?
-            <FaPlay className={playBtnClass} onClick={this.handlePlayBtn}/>
+            <FaPlay onClick={this.handlePlayBtn}/>
             :
             null
           }
         </div>
     )
   }
-
+  
   componentDidUpdate(prevProps){
     if(this.props.id === prevProps.NowPlaying && this.state.isPlaying === true){
       this.setState({isPlaying : false, isPlayed : true});
