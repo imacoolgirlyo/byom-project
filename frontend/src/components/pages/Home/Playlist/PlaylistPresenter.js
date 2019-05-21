@@ -23,7 +23,6 @@ const PlaylistPresenter = (
         id={music._id}
         sender= {music.sender}
         artist = {music.artist}
-        isPlaying = {music.isPlaying}
         title={music.title}
         NowPlaying={NowPlaying}
         handleNowPlaying={handleNowPlaying}

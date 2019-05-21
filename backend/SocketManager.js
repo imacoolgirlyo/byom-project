@@ -27,22 +27,21 @@ module.exports = function(socket){
 
     socket.on('new music', data => {
       // database에 저장 , broadcast 보내기
-      const { sender, artist, title, isPlayed, isPlaying } = data;
+      const { sender, artist, title, isPlayed } = data;
       console.log(`SERVER GET : sender : ${sender}, artist : ${artist}, title : ${title}, isPlayed: ${isPlayed}`);
       // id 까지 보내줘야함 
       Music.create({
         sender,
         artist,
         title,
-        isPlayed,
-        isPlaying
+        isPlayed
       }).then((data) => {
         io.emit('new notification', data);
       })
     })
 
     socket.on('SELECT_MUSIC', function(_id, callback){
-      Music.findByIdAndUpdate({ _id: _id }, {isPlaying: true}, {new : true})
+      Music.findByIdAndUpdate({ _id: _id }, {isPlayed: true}, {new : true})
       .then(data => { 
         io.emit('music clicked', data);
       })

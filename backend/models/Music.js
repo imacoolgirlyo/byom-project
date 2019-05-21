@@ -12,9 +12,6 @@ const MusicSchema = new mongoose.Schema({
     },
     isPlayed : {
         type : Boolean
-    },
-    isPlaying : {
-        type : Boolean
     }
 })
 

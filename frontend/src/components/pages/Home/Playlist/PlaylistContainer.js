@@ -48,8 +48,8 @@ export default class PlaylistContainer extends Component{
     handleSubmit = (e) => {
         e.preventDefault();
         const { user, socket } = this.props;
-        const { artist, title, isPlayed, isPlaying } = this.state;
-        socket.emit('new music', {sender: user.nickname, artist, title, isPlayed, isPlaying});
+        const { artist, title, isPlayed } = this.state;
+        socket.emit('new music', {sender: user.nickname, artist, title, isPlayed : false});
         this.setState({
             artist: '',
             title: ''
@@ -72,29 +72,21 @@ export default class PlaylistContainer extends Component{
 
     }
     handleNowPlaying(data){
-        const {musics} = this.state;
-        // 플레이할 노래 db에서 isplaying로 바뀌고 바뀐 music 데이터 받은 상태
-        // isPlaying인 애 NowPlaying에 저장 ? 일단 db로 전체 리스트 다 렌더링하는 걸 고려
+        // const {musics} = this.state;
+        // this.setState({
+        //     musics: musics.map(music => 
+        //         music._id === data._id ?
+        //         {...music, ...data}
+        //         : music
+        //     )
+        // })
+        const { NowPlaying } = this.state;
         this.setState({
-            musics: musics.map(music => 
-                music._id === data._id ?
-                {...music, ...data}
-                : music
-            )
+            NowPlaying : data._id
         })
-        console.log(musics);
+        console.log(NowPlaying);
     }
-    //     toggleMusicCheck(data){
-    //     const { musics } = this.state;
-    //     this.setState({
-    //         musics : musics.map(music=> 
-    //             music._id === data._id ?
-    //             {...music, ...data}
-    //             : music
-    //         )
-    //     })
-    // }
-    
+
     render(){
         const { user, socket } = this.props;
         const { musics, artist, title, NowPlaying } = this.state;

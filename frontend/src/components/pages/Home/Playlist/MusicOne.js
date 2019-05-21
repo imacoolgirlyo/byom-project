@@ -14,9 +14,7 @@ class Music extends Component{
   constructor(props){
     super(props);
     this.state={
-      isPlayed : false,
-      isPlaying : false,
-      playingID : ''
+      isPlaying : false
     }
     this.handlePlayBtn = this.handlePlayBtn.bind(this);
   }
@@ -24,21 +22,16 @@ class Music extends Component{
   handlePlayBtn(e){
     const {isPlaying, isPlayed} = this.state;
     const {handleNowPlaying, id, socket} = this.props;
-
     socket.emit('SELECT_MUSIC', id, (data)=> {
-      console.log(data._id);
-      if(id=== data._id && isPlayed === false){
-        this.setState({isPlaying : true});
-      }
+      console.log(`callback at MusicOne, ${data._id}`);
     })
   }
   
   render(){
-    const { id, artist, title, sender, user, isPlaying, NowPlaying} = this.props;
+    const { id, artist, title, sender, user, NowPlaying} = this.props;
     const musicClass = classNames({
-      playBtn : true,
-      'isPlaying' : isPlaying,
-      'isPlayed' : this.state.isPlayed
+      'isPlaying' : this.state.isPlaying,
+      'isPlayed' : !this.state.isPlaying
     })
 
     return(
@@ -60,9 +53,16 @@ class Music extends Component{
     )
   }
   
-  componentDidUpdate(prevProps){
-    if(this.props.id === prevProps.NowPlaying && this.state.isPlaying === true){
-      this.setState({isPlaying : false, isPlayed : true});
+  // props로 받은 NowPlaying이 바꼈을 때, 렌더링 다시 적용
+  componentDidUpdate(prevProps){ 
+    // this.props.NowPlaying이랑 내 id랑 같으면 this.state.isPlaying : true
+    if(this.props.NowPlaying !== prevProps.NowPlaying ){
+      if(this.props.NowPlaying === this.props.id){
+        this.setState({isPlaying : true})
+      }
+      if(this.props.NowPlaying !== this.props.id){
+        this.setState({isPlaying : false})
+      }
     }
   }
 }
