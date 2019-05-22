@@ -5,16 +5,17 @@ import  Music from './MusicOne';
 
 const Musics = styled.div`
   overflow-y : scroll;
-  height : 300px;
+  height : ${props => props.user==="DJ"? `100%` : `300px`}
   border : 0;
   background-color : black;
   color : white;
+
 `;
 
 const PlaylistPresenter = (
   {socket, user, musics, NowPlaying, handleClick, checkScrollPosition, handleNowPlaying}) => {
   return(
-    <Musics onScroll={checkScrollPosition}>
+    <Musics user={user.nickname} onScroll={checkScrollPosition}>
       {musics.map(music => {
         return (
         <Music
@@ -24,6 +25,7 @@ const PlaylistPresenter = (
         sender= {music.sender}
         artist = {music.artist}
         title={music.title}
+        isPlayed = {music.isPlayed}
         NowPlaying={NowPlaying}
         handleNowPlaying={handleNowPlaying}
          />

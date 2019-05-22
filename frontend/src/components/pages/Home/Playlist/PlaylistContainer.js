@@ -17,6 +17,7 @@ export default class PlaylistContainer extends Component{
         }
         this.addMusictoPlayList = this.addMusictoPlayList.bind(this);
         this.handleNowPlaying = this.handleNowPlaying.bind(this);
+        this.cancelNowPlaying = this.cancelNowPlaying.bind(this);
     }
     componentDidMount() {
         const { socket } = this.props;
@@ -30,6 +31,7 @@ export default class PlaylistContainer extends Component{
         })
         socket.on('new notification', this.addMusictoPlayList);
         socket.on('music clicked', this.handleNowPlaying);
+        socket.on('music canceld', this.cancelNowPlaying);
     }
 
     componentWillUnmount(){
@@ -84,7 +86,15 @@ export default class PlaylistContainer extends Component{
         this.setState({
             NowPlaying : data._id
         })
-        console.log(NowPlaying);
+    }
+
+    cancelNowPlaying(data){
+        const { NowPlaying } = this.state;
+        if(NowPlaying === data._id){
+            this.setState({
+                NowPlaying : ""
+            })
+        }
     }
 
     render(){
@@ -102,12 +112,17 @@ export default class PlaylistContainer extends Component{
                 handleNowPlaying={this.handleNowPlaying}
                 >
             </PlaylistPresenter>
-            <MusicInputPresenter
+            {
+            user.nickname !== "DJ" ?
+                <MusicInputPresenter
                 artist={artist}
                 title={title}
                 handleInputChange={this.handleInputChange}
                 handleSubmit={this.handleSubmit}
-             />
+                />
+            :
+            null
+            }
             </WindowContentWrapper>
         )
     }

@@ -47,10 +47,10 @@ module.exports = function(socket){
       })
     })
 
-    socket.on('remove check', _id => {
-      Music.findByIdAndUpdate({_id : _id}, {selected : false}, {new : true})
+    socket.on('CANCEL_MUSIC', _id => {
+      Music.findByIdAndUpdate({_id : _id}, {isPlayed : false}, {new : true})
       .then((data) => {
-        io.emit('check is removed', data);
+        io.emit('music canceld', data);
       })
     })
 }
