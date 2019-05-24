@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import LoginHeaderLogo from '../LoginHeaderLogo';
+// import LoginHeaderLogo from '../LoginHeaderLogo';
 // 구조
 {/* <WindowBox>
   <WindowHeader/>
@@ -22,6 +22,7 @@ export const WindowBox = styled.div`
   border-top: 1px solid white;
   border-right: 1px solid black;
   box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.75);
+  
 `;
 
 // window header 
@@ -42,21 +43,21 @@ const WindowHeaderColumn = styled('div')`
   align-items: center;
 `;
 
-export const WindowHeader = (props) => {
-  return (
-    <WindowHeaderContainer>
-      <WindowHeaderColumn>
-      <LoginHeaderLogo/>
-          <div>{props.name}</div>
-      </WindowHeaderColumn>
-      <WindowHeaderColumn>
-          <div className="window-icon min"></div>
-          <div className="window-icon max"></div>
-          <div className="window-icon close"></div>
-      </WindowHeaderColumn>
-    </WindowHeaderContainer>
-  )
-}
+// export const WindowHeader = (props) => {
+//   return (
+//     <WindowHeaderContainer>
+//       <WindowHeaderColumn>
+//       <LoginHeaderLogo/>
+//           <div>{props.name}</div>
+//       </WindowHeaderColumn>
+//       <WindowHeaderColumn>
+//           <div className="window-icon min"></div>
+//           <div className="window-icon max"></div>
+//           <div className="window-icon close"></div>
+//       </WindowHeaderColumn>
+//     </WindowHeaderContainer>
+//   )
+// }
 
 export const WindowContentWrapper = styled.div`
   height: calc( 100% - 32px);
