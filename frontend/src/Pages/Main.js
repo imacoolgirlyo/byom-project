@@ -9,7 +9,8 @@ class MainContent extends Component{
     this.state={
       musics: [],
       artist: '',
-      title : ''
+      title : '',
+      scrollPosition : ''
     }
   }
 
@@ -70,6 +71,8 @@ class MainContent extends Component{
         me={nickname}
         socket={socket}
         musics={musics}
+        onScrolled={e => console.log('the list was scrolled!')}
+        onScrolledTop={e => alert('scrolled to top!')}
         />
         {
           nickname !== "DJ"?

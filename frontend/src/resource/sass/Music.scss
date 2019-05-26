@@ -1,3 +1,25 @@
 .music{
-    padding: 4px;
+    background-color: black;
+    display: flex;
+    padding: 5px;
+    margin : 3px;
+    align-items: center;
+    .music-column:nth-child(2){
+        width : 84%;
+    }
+
 }
+.isPlaying{
+ background-color: aqua;
+}
+.isPlayed_USER{
+background-color: black; 
+}
+.isPlayed_DJ{
+    background-color: beige;
+}
+
+.music-sender{
+    font-size: 10px;
+}
+

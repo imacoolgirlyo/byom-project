@@ -1,4 +1,5 @@
 import React, {Component, Fragment } from 'react';
+import autoscroll from 'autoscroll-react';
 import styled from 'styled-components';
 import Music from './Music';
 
@@ -18,14 +19,14 @@ class Playlist extends Component{
     }
   }
 
-  handleNowPlaying(data){
+  handleNowPlaying = data =>{
     const { NowPlaying } = this.state;
     this.setState({
         NowPlaying : data._id
     })
   }
 
-  cancelNowPlaying(data){
+  cancelNowPlaying = data => {
       const { NowPlaying } = this.state;
       if(NowPlaying === data._id){
           this.setState({
@@ -42,15 +43,23 @@ class Playlist extends Component{
   componentDidMount(){
     const {socket} = this.props;
     this.listenSocketEvent(socket);
+    // this.scrollToBottom();
   } 
+  // componentDidUpdate(){
+  //   this.scrollToBottom();
+  // }
 
   componentWillUnmount(){
       const { socket }= this.props;
       socket.removeAllListeners();
   }
 
+  // scrollToBottom = () => {
+  //   this.messagesEnd.scrollIntoView({ behavior : "smooth"});
+  // }
+
   render(){
-    const { me, musics, socket } = this.props;
+    const { me, musics, socket, ...props } = this.props;
     const { NowPlaying  } = this.state;
     let playlist = musics.map( music => {
       return <Music
@@ -61,12 +70,14 @@ class Playlist extends Component{
       />
     })
     return(
-      <PlaylistPresenter me={me}>
+      <PlaylistPresenter {...props} me={me}>
         {playlist}
+        {/* <div style={{float:"left", clear: "both" }}
+          ref={(el) => {this.messagesEnd= el;}}> </div> */}
       </PlaylistPresenter>
     )
   }
 }
 
-export default Playlist;
+export default autoscroll(Playlist);
 
