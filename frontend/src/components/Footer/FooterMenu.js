@@ -1,4 +1,5 @@
 import React, {Component, Fragment} from 'react';
+import classNames from 'classnames';
 import FooterMenuContent from './FooterMenuContent';
 import 'resource/sass/Footer/FooterMenu.scss';
 
@@ -7,8 +8,13 @@ class FooterMenu extends Component{
   //   super(props);
   // }
   render(){
+    const {isMenuShown} = this.props;
+    let menuShowToggle = classNames({
+      "footer_menu_notShown" : true,
+      "footer_menu_shown" : isMenuShown
+    })
     return(
-      <div className="footer_menu">
+      <div className={menuShowToggle}>
         <div className="sidebar"></div>
         <div className="headline"><b>Windows</b> 98</div>
         <ul className="menu">     

@@ -22,9 +22,7 @@ class FooterMenuContent extends Component{
     }
   }
 
-
   makeMenuList = () => {
-    console.log('hiu');
     const { menuList } = this.props;
     let reverse = menuList.map( (val, index) => menuList[menuList.length-1-index]);
 
@@ -35,7 +33,7 @@ class FooterMenuContent extends Component{
       })
       return (
         <div className={menuClass}>
-         <Icon name={content.name} />
+         <Icon name={content.name} /> 
          <div className="menu_content-column">{content.name}</div>
           {
           content.dropdown ?
@@ -54,8 +52,7 @@ class FooterMenuContent extends Component{
   }
 
   render(){
-    console.log('kkk');
-    const {menuList} = this.props;
+    const { menuList } = this.props;
     return(
       <div>
         {this.makeMenuList()}
@@ -63,39 +60,5 @@ class FooterMenuContent extends Component{
     )
   }
 }
-
-// const FooterMenuContent = (props) => {
-
-//   let reverse = props.menuList.map( (val, index) => props.menuList[props.menuList.length-1-index]);
-
-//   let menuContent = reverse.map( menu => {
-//       let menuClass = classNames({
-//       'menu_content' : true,
-//       'menu_hasDropdown' : menu.dropdown
-//       })
-
-//     return (
-//       <div className={menuClass}>
-//         <Icon name={menu.name} />
-//         <div className="menu_content-column">{menu.name}</div>
-//          {
-//           menu.dropdown ?
-//           <Fragment>
-//             <div className="menu_content-column">►</div>
-//             <MenuDropdown items={menu.dropdown}/> 
-//             {/* db에서 archive 내용 가져와야함 */}
-//           </Fragment>
-//           :
-//           null
-//           }
-//       </div>
-//     )
-//   })
-
-//   return (
-//     <Fragment>
-//     {menuContent}
-//     </Fragment>
-//   )}
 
 export default FooterMenuContent;
