@@ -17,19 +17,15 @@ class Music extends Component{
     }
   }
 
-  handlePlayBtn = e =>{
-    console.log('btn clicked');
-    console.log(this.state.isPlaying);
-  const { isPlaying, isPlayed } = this.state;
-  const { music, socket } = this.props;
-  if(this.state.isPlaying === false){
-    socket.emit('SELECT_MUSIC', music._id)
+  handlePlayBtn = e => {
+    const { isPlaying, isPlayed } = this.state;
+    const { music, socket } = this.props;
+    if(!isPlaying){
+      socket.emit('SELECT_MUSIC', music._id)
+    }else{
+      socket.emit('CANCEL_MUSIC', music._id);
   }
-  // 재생 취소
-  if(this.state.isPlaying === true){
-    socket.emit('CANCEL_MUSIC', music._id);
   }
-}
 
 render(){
   console.log(this.props.music);
@@ -37,8 +33,6 @@ render(){
   const musicClass = classNames({
   'music' : true,
   'isPlaying' : this.state.isPlaying
-  // 'isPlayed_USER' : this.state.isPlayed && me !=="DJ",
-  // 'isPlayed_DJ' : this.state.isPlayed && me === "DJ"
 })
 
   return(

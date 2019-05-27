@@ -1,7 +1,10 @@
 import React, { Component, Fragment } from 'react';
+import Media from "react-media";
 import io from 'socket.io-client';
 import IconContainer from './IconContainer';
 import ContentContainer from './Pages';
+import Footer from 'Components/Footer';
+// import FooterMenu from 'Components/Footer/FooterMenu';
 import 'resource/sass/App.scss';
 // import { WindowBox } from './components/window/Window' 
 
@@ -13,7 +16,8 @@ class App extends Component {
       isBYOM : true,
       isLoggedIn : false,
       socket: null,
-      connectMsg : ''
+      connectMsg : '',
+      programList: ["Bring Your Own Music.exe"]
     }
   }
 
@@ -53,16 +57,24 @@ handleUserLoggedIn = (nickname) => {
 }
 
 render() {
-  const {socket, isBYOM, isLoggedIn} = this.state;
+  const { socket, isBYOM, isLoggedIn, programList } = this.state;
   return (
     <div className="app">
-    <IconContainer changeViewBtnHandler={this.changeViewBtnHandler}/>
-    <ContentContainer
-      socket={socket}
-      isLoggedIn={isLoggedIn} 
-      isBYOM={isBYOM}
-      checkLogIn={this.handleUserLoggedIn}
-      />
+      <IconContainer changeViewBtnHandler={this.changeViewBtnHandler}/>
+      <ContentContainer
+        socket={socket}
+        isLoggedIn={isLoggedIn} 
+        isBYOM={isBYOM}
+        checkLogIn={this.handleUserLoggedIn}
+        />
+    <Media query="(max-width: 800px)">
+    {matches =>
+        matches ? 
+        (<p> less than 800px wide</p>)
+        :
+        (<Footer programs={programList}/>)
+      }
+    </Media>
     </div>
   );
   }
