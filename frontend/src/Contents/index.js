@@ -2,7 +2,6 @@ import React, { Component, Fragment } from 'react';
 import About from './About';
 import LoginForm from './LoginForm';
 import Main from './Main';
-import { WindowBox } from '../Components/Window/Window'
 
 class ContentContainer extends Component{
   constructor(props){
@@ -13,12 +12,11 @@ class ContentContainer extends Component{
   }
 
   handleUserNameChange = (nickname) => {
-    //props.함수로 닉네임 전달 
-    this.setState({nickname})
+    this.setState({nickname});
   }
 
   setUser = (data) => {
-    this.props.checkLogIn(data.nicknmae)
+    this.props.checkLogIn(data.nickname);
   }
 
   handleUserNameSubmit = (e) => { 
@@ -29,12 +27,10 @@ class ContentContainer extends Component{
       this.props.checkLogIn(nickname);
       console.log(nickname + " is submitted. ");
       socket.emit("NICKNAME_SAVED", nickname, this.setUser);
-      
     }
   }
 
-
-  render(){
+  loadContent = () => {
     const { isLoggedIn, isBYOM, socket } = this.props;
     const { nickname } = this.state;
     let content;
@@ -53,11 +49,14 @@ class ContentContainer extends Component{
     if(isLoggedIn && isBYOM) {
       content = <Main nickname={nickname} socket={socket}/>
     }
-  
+    return content;
+  }
+
+  render(){
     return(
-    <WindowBox>
-      {content}
-    </WindowBox>
+      <Fragment>
+        {this.loadContent()}
+      </Fragment>
     )
   }
 }

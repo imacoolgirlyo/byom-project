@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import 'resource/sass/FooterBar.scss';
+import 'resource/sass/Footer/FooterBar.scss';
 
 const FooterProgramButton = (props) => {
   return (
