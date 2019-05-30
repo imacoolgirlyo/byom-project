@@ -1,9 +1,9 @@
-import React, { Component, Fragment }  from 'react';
+import React, { Component }  from 'react';
 import Input from 'Components/Input';
 import SubmitBtn from 'Components/SubmitBtn';
 import { WindowBox, WindowContentWrapper, WindowHeader } from 'Components/Window';
 
-class LoginForm extends Component {
+class ByomLogin extends Component {
   constructor(props){
     super(props)
   }
@@ -12,11 +12,14 @@ class LoginForm extends Component {
     this.props.onUserNameChange(e.target.value);
   }
 
+  headerIconClick = (e) => {
+    this.props.headerIconClick(e.target.name, 'Byom');
+  }
   render(){
-    const { nickname, onUserNameSubmit } = this.props;
+    const { nickname, onUserNameSubmit} = this.props;
     return(
       <WindowBox>
-      <WindowHeader/>
+      <WindowHeader handleClick={this.headerIconClick}/>
       <WindowContentWrapper>
         <form onSubmit={onUserNameSubmit}>
           <Input
@@ -33,4 +36,4 @@ class LoginForm extends Component {
 
 }
 
-export default LoginForm;
+export default ByomLogin;

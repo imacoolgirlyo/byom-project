@@ -1,9 +1,10 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component} from 'react';
 import axios from 'axios';
-import Playlist from '../Playlist';
+import MusicList from '../MusicList';
 import MusicInput from '../MusicInput';
+import { WindowBox, WindowContentWrapper, WindowHeader } from 'Components/Window';
 
-class MainContent extends Component{
+class ByomMusic extends Component{
   constructor(props){
     super(props);
     this.state={
@@ -61,13 +62,19 @@ class MainContent extends Component{
         title: ''
     })
   }
+
+  handleBoxClick = (e) => {
+    this.props.headerIconClick(e.target.name, 'Byom');
+  }
  
   render(){
     const { socket, nickname } = this.props;
     const { musics, artist, title } = this.state;
     return(
-    <Fragment>
-      <Playlist
+    <WindowBox>
+      <WindowHeader handleClick={this.handleBoxClick}/>
+      <WindowContentWrapper>
+      <MusicList
         me={nickname}
         socket={socket}
         musics={musics}
@@ -84,10 +91,10 @@ class MainContent extends Component{
           :
           null
         }
-      
-    </Fragment>
+      </WindowContentWrapper>
+    </WindowBox>
     )
   }
 }
 
-export default MainContent;
+export default ByomMusic;

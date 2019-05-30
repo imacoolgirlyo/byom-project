@@ -1,7 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import About from './About';
-import LoginForm from './LoginForm';
-import Main from './Main';
+import Byom from './Byom';
+import ByomLogin from './ByomLogin';
+import ByomMusic from './ByomMusic';
 
 class ContentContainer extends Component{
   constructor(props){
@@ -30,32 +31,24 @@ class ContentContainer extends Component{
     }
   }
 
-  loadContent = () => {
-    const { isLoggedIn, isBYOM, socket } = this.props;
-    const { nickname } = this.state;
-    let content;
-
-    if (!isLoggedIn && isBYOM) {
-      // 아직 로그인 하기전, 처음 페이지
-     content = <LoginForm 
-      nickname={nickname} 
-      onUserNameChange={this.handleUserNameChange}
-      onUserNameSubmit={this.handleUserNameSubmit}
-      />
-      }
-    if(!isBYOM){
-     content = <About/>
-    }
-    if(isLoggedIn && isBYOM) {
-      content = <Main nickname={nickname} socket={socket}/>
-    }
-    return content;
-  }
-
   render(){
+    const {windowStatus, headerIconClick, socket, isLoggedIn} = this.props;
+    const {nickname} = this.state;
     return(
       <Fragment>
-        {this.loadContent()}
+        <Byom
+          nickname={nickname}
+          socket={socket}
+          isLoggedIn={isLoggedIn}
+          windowStatus={windowStatus}
+          onUserNameSubmit={this.handleUserNameSubmit}
+          onUserNameChange={this.handleUserNameChange}
+          headerIconClick={headerIconClick}
+        />
+        <About 
+          windowStatus={windowStatus}
+          headerIconClick={headerIconClick}
+          />
       </Fragment>
     )
   }

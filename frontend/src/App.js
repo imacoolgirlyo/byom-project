@@ -1,5 +1,5 @@
- import React, { Component, Fragment } from 'react';
- import Draggable from 'react-draggable';
+import React, { Component, Fragment } from 'react';
+import Draggable from 'react-draggable';
 import Media from "react-media";
 import io from 'socket.io-client';
 import IconContainer from './IconContainer';
@@ -12,7 +12,9 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      isBYOM : true,
+      windowStatus : {About : 'close', Byom : 'open'},
+      isBYOMOpen : true,
+      isAboutOpen : false,
       isLoggedIn : false,
       socket: null,
       connectMsg : '',
@@ -36,16 +38,10 @@ class App extends Component {
     })
   }
 
-  changeViewBtnHandler = (name) => {
-    if(name === "about"){
-      this.setState({
-        isBYOM : false
-      })}
-      else if(name === "byom"){
-        this.setState({
-        isBYOM : true
-      })
-      }
+  windowProgramIconClick = (programName) => {
+    let windowStatus = Object.assign({}, this.state.windowStatus);
+    windowStatus[programName] = 'open';
+    this.setState({windowStatus});
   }
 
   handleUserLoggedIn = (nickname) => { 
@@ -54,24 +50,56 @@ class App extends Component {
     }
   }
 
-  render() {
-    const { socket, isBYOM, isLoggedIn, programList } = this.state;
+  minimise = (window) => {
+    let windowStatus = Object.assign({}, this.state.windowStatus);
+    windowStatus[window] = 'min';
+    this.setState({windowStatus});
+  }
 
+  close = (window) => {
+    console.log('close');
+    let windowStatus = Object.assign({}, this.state.windowStatus);
+    windowStatus[window] = 'close';
+    this.setState({windowStatus});
+    // footer에서 사라지게 하기
+  }
+  
+  headerIconClick = (iconName, windowName) => {
+    // switch(iconName){
+    //   case 'min': () => this.minimise(windowName);
+    //   case 'close': () => this.close(windowName); 
+    // }
+    if(iconName === 'min'){
+      this.minimise(windowName);
+    }
+    if(iconName === 'close'){
+      this.close(windowName);
+    }
+  }
+
+  render() {
+    const { socket, windowStatus, isBYOMOpen, isAboutOpen, isLoggedIn, programList } = this.state;
     return (
       <div className="app">
-        <IconContainer changeViewBtnHandler={this.changeViewBtnHandler}/>
+        <IconContainer windowProgramIconClick={this.windowProgramIconClick}/>
         <ContentContainer
           socket={socket}
           isLoggedIn={isLoggedIn} 
-          isBYOM={isBYOM}
+          isBYOMOpen={isBYOMOpen}
+          isAboutOpen={isAboutOpen}
           checkLogIn={this.handleUserLoggedIn}
+          headerIconClick={this.headerIconClick}
+          windowStatus={windowStatus}
         />
         <Media query="(max-width: 800px)">
         {matches =>
             matches ? 
-            (<p> less than 800px wide</p>)
+            null
             :
-            (<Footer programs={programList}/>)
+            (<Footer
+              windowStatus={windowStatus}
+              programs={programList}/>
+              )
           }
         </Media>
       </div>

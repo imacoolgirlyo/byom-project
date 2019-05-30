@@ -14,9 +14,8 @@ class IconContainer extends Component {
 
   handleIconClick = (e) => {
     // e.target이 img일 때
-    const name = e.target.name;
-    const { changeViewBtnHandler } = this.props.changeViewBtnHandler;
-    this.props.changeViewBtnHandler(name);
+    const programName = e.target.name;
+    this.props.windowProgramIconClick(programName);
   }
   render(){
     return(

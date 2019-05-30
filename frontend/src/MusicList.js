@@ -1,9 +1,9 @@
-import React, {Component, Fragment } from 'react';
+import React, {Component, Fragment, PureComponent } from 'react';
 import autoscroll from 'autoscroll-react';
 import styled from 'styled-components';
 import Music from './Music';
 
-const PlaylistPresenter = styled.div`
+const MusicListPresenter = styled.div`
   overflow-y : scroll;
   height : ${props => props.me==="DJ"? `100%` : `300px`}
   border : 0;
@@ -11,13 +11,18 @@ const PlaylistPresenter = styled.div`
   color : white;
 `;
 
-class Playlist extends Component{
+class MusicList extends Component{
   constructor(props){
     super(props);
     this.state={
       NowPlaying : ''
     }
   }
+
+  shouldComponentUpdate(nextProps, nextState){
+    return (this.props.musics !== nextProps.musics || this.state.NowPlaying !== nextState.NowPlaying );
+  }
+
 
   handleNowPlaying = data =>{
     const { NowPlaying } = this.state;
@@ -70,14 +75,14 @@ class Playlist extends Component{
       />
     })
     return(
-      <PlaylistPresenter {...props} me={me}>
+      <MusicListPresenter {...props} me={me}>
         {playlist}
         {/* <div style={{float:"left", clear: "both" }}
           ref={(el) => {this.messagesEnd= el;}}> </div> */}
-      </PlaylistPresenter>
+      </MusicListPresenter>
     )
   }
 }
 
-export default autoscroll(Playlist);
+export default autoscroll(MusicList);
 

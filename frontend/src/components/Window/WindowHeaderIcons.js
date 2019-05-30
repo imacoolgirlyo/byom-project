@@ -20,7 +20,7 @@ export const WindowIcon = styled('div')`
 export const Min = () => {
   return (
     <WindowIcon>
-      <img  src={min} alert="min" />
+      <img name="min"  src={min} alert="min" />
     </WindowIcon>
   )
 }
@@ -28,7 +28,7 @@ export const Min = () => {
 export const Max = () => {
   return (
     <WindowIcon>
-      <img src={max} alert="max" />
+      <img name="max" src={max} alert="max" />
     </WindowIcon>
   )
 }
@@ -36,7 +36,7 @@ export const Max = () => {
 export const Close = () => {
   return (
     <WindowIcon>
-      <img  src={close} alert="close" />
+      <img name="close"  src={close} alert="close" />
     </WindowIcon>
   )
 }

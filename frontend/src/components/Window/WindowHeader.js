@@ -19,9 +19,9 @@ const WindowHeaderColumn = styled('div')`
   align-items: center;
 `;
 
-export const WindowHeader = (props) => {
+export const WindowHeader = ({handleClick}) => {
   return (
-    <WindowHeaderContainer>
+    <WindowHeaderContainer onClick={handleClick}>
       <WindowHeaderColumn>
       {/* <LoginHeaderLogo/> */}
           {/* <div>{props.name}</div> */}

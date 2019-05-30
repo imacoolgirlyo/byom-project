@@ -6,7 +6,7 @@ function AboutIcon({handleIconClick}) {
     // Import result is the URL of your image
     return (
     <div onClick={handleIconClick} className="routeBtn-about">
-        <img name="about" className="docu" src={docu} alt="logo"/>
+        <img name="About" className="docu" src={docu} alt="logo"/>
         <div> About </div>
     </div>
     )

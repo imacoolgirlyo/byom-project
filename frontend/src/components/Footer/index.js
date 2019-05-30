@@ -15,8 +15,9 @@ class Footer extends Component{
     this.setState({isStartBtnOn : !this.state.isStartBtnOn});
   }
   render(){
-    const {programs} = this.props;
+    const {programs, windowStatus} = this.props;
     const {isStartBtnOn} = this.state;
+    console.log(windowStatus);
     return(
       <Fragment>
         <FooterMenu
