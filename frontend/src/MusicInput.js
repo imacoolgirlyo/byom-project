@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import styled from 'styled-components';
 import SubmitBtn from 'Components/SubmitBtn';
-import SeperateLine from 'Components/SeperateLine';
 import Input from 'Components/Input';
 import InputLabel from 'Components/InputLabel';
 

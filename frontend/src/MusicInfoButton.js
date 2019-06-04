@@ -7,9 +7,7 @@ import 'resource/sass/Music.scss';
 // }
 
 class MusicInfoButton extends Component{
-  constructor(props){
-    super(props);
-  }
+
   render(){
     const { isPlayed, isPlaying, onPlayButtonClick } = this.props;
     let button ;

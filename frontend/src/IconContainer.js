@@ -9,19 +9,17 @@ class IconContainer extends Component {
       isBYOM : true
     }
   }
-  // 굳이 AboutIcon, ByomIcon 이라는 컴포넌트를 따로 만들어야하나? props를 한번 더 보내야해서 귀찮네
-  // ex) AboutIcon에 onclick을 붙어도 되나? 굳이 div에 다이렉트로 안붙야도 되겠지?
-
-  handleIconClick = (e) => {
+  
+  IconClick = (e) => {
     // e.target이 img일 때
-    const programName = e.target.name;
-    this.props.windowProgramIconClick(programName);
+    const windowName = e.target.name;
+    this.props.makeWindowTopZ(windowName);
   }
   render(){
     return(
       <Fragment>
-        <AboutIcon handleIconClick={this.handleIconClick}/>
-        <ByomIcon handleIconClick={this.handleIconClick}/>
+        <AboutIcon handleIconClick={this.IconClick}/>
+        <ByomIcon handleIconClick={this.IconClick}/>
       </Fragment>
     )
   }

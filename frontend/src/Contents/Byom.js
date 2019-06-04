@@ -4,7 +4,8 @@ import ByomLogin from './ByomLogin';
 import ByomMusic from './ByomMusic';
 
 const ByomWrapper = styled.div`
-  display : ${props => props.windowStatus['Byom']==="open"? "block" : "none" }
+  display : ${props => props.BYOM=== "open"? "block" : "none" }
+  zindex : ${props => props.topZ === "BYOM"? "1" : "0"}
 `;
 
 class Byom extends Component{
@@ -12,9 +13,17 @@ class Byom extends Component{
   render(){
     const {
       nickname, 
-      socket, isLoggedIn, windowStatus, headerIconClick,onUserNameSubmit, onUserNameChange} = this.props;
+      socket,
+      isLoggedIn,
+      BYOM,
+      topZ,
+      onUserNameSubmit,
+      headerIconClick,
+      onUserNameChange
+      } = this.props;
+  
     return(
-      <ByomWrapper windowStatus={windowStatus}>
+      <ByomWrapper BYOM={BYOM} topZ={topZ}>
         {
           isLoggedIn ?
           <ByomMusic

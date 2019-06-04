@@ -63,8 +63,8 @@ class ByomMusic extends Component{
     })
   }
 
-  handleBoxClick = (e) => {
-    this.props.headerIconClick(e.target.name, 'Byom');
+  handleIconClick = (e) => {
+    this.props.headerIconClick('BYOM', e.target.name);
   }
  
   render(){
@@ -72,7 +72,7 @@ class ByomMusic extends Component{
     const { musics, artist, title } = this.state;
     return(
     <WindowBox>
-      <WindowHeader handleClick={this.handleBoxClick}/>
+      <WindowHeader handleClick={this.handleIconClick}/>
       <WindowContentWrapper>
       <MusicList
         me={nickname}

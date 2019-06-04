@@ -1,5 +1,4 @@
-import React from 'react'
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const WindowContentWrapper = styled.div`
   height: calc( 100% - 32px);

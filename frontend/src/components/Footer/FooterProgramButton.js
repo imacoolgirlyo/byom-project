@@ -1,12 +1,15 @@
 import React, {Component} from 'react';
 import 'resource/sass/Footer/FooterBar.scss';
 
-const FooterProgramButton = (props) => {
+class FooterProgramButton extends Component{
+  render(){
+  const { name, footerPgmButtonHandler } = this.props;
   return (
-    <div className="program">
-    {props.name}
+    <div className="program" onClick={() => footerPgmButtonHandler(name)}>
+      {name}.exe
     </div>
   )
+}
 }
 
 export default FooterProgramButton;

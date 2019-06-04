@@ -16,10 +16,25 @@ class FooterBar extends Component {
   }
 
   render(){
-    const { programs, onStartBtnClick, isStartBtnOn } = this.props;
-    let programList = programs.map( program => {
-      return <FooterProgramButton name={program}/>
-    })
+
+    const { 
+      programs,
+      footerPgmButtonHandler,
+      onStartBtnClick,
+      isStartBtnOn 
+    } = this.props;
+
+    console.log(programs);
+
+    // let programList = programs.map( program => {
+    //   return (
+    //     <FooterProgramButton 
+    //       name={program}
+    //       footerPgmButtonHandler={footerPgmButtonHandler}
+    //     />
+    //   )
+    // })
+    
     const startBtnClass = classNames({
       'start_button' : true,
       'start_button_on' : this.props.isStartBtnOn 
@@ -27,13 +42,12 @@ class FooterBar extends Component {
 
     return(
       <Fragment>
-      {/* <FooterMenu/> */}
       <div className="footer_bar">
         <div onClick={this.onclickHandler} className={startBtnClass}>
          <div ><img className="startLogo" src={window} alt="logo"/> </div>
          <div><b>Start</b></div>
         </div>
-        {programList}
+        {/* {programList} */}
       </div>
       </Fragment>
     )

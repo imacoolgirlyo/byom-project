@@ -1,8 +1,6 @@
 import React, { Component, Fragment } from 'react';
-import About from './About';
+import AboutContent from './About';
 import Byom from './Byom';
-import ByomLogin from './ByomLogin';
-import ByomMusic from './ByomMusic';
 
 class ContentContainer extends Component{
   constructor(props){
@@ -16,7 +14,8 @@ class ContentContainer extends Component{
     this.setState({nickname});
   }
 
-  setUser = (data) => {
+  setUser = (data) => { 
+    // server에서 user 닉네임 저장 후 callback 사용 (아니면 바로 App에서 socket.on?)
     this.props.checkLogIn(data.nickname);
   }
 
@@ -32,21 +31,33 @@ class ContentContainer extends Component{
   }
 
   render(){
-    const {windowStatus, headerIconClick, socket, isLoggedIn} = this.props;
+    
+    const {
+      socket,
+      BYOM,
+      About,
+      topZ,
+      headerIconClick,
+      isLoggedIn
+      } = this.props;
+
     const {nickname} = this.state;
+
     return(
       <Fragment>
         <Byom
           nickname={nickname}
           socket={socket}
           isLoggedIn={isLoggedIn}
-          windowStatus={windowStatus}
+          BYOM={BYOM}
+          topZ={topZ}
           onUserNameSubmit={this.handleUserNameSubmit}
           onUserNameChange={this.handleUserNameChange}
           headerIconClick={headerIconClick}
         />
-        <About 
-          windowStatus={windowStatus}
+        <AboutContent
+          About={About}
+          topZ={topZ}
           headerIconClick={headerIconClick}
           />
       </Fragment>

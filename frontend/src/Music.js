@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import cd from 'resource/image/cd.png'
 import MusicInfoButton from './MusicInfoButton';
 import classNames from 'classnames';
@@ -18,7 +18,7 @@ class Music extends Component{
   }
 
   handlePlayBtn = e => {
-    const { isPlaying, isPlayed } = this.state;
+    const { isPlaying } = this.state;
     const { music, socket } = this.props;
     if(!isPlaying){
       socket.emit('SELECT_MUSIC', music._id)
@@ -29,7 +29,7 @@ class Music extends Component{
 
 render(){
   console.log(this.props.music);
-  const { me, music, NowPlaying } =this.props;
+  const { me, music } =this.props;
   const musicClass = classNames({
   'music' : true,
   'isPlaying' : this.state.isPlaying

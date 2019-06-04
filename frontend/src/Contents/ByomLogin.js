@@ -4,16 +4,13 @@ import SubmitBtn from 'Components/SubmitBtn';
 import { WindowBox, WindowContentWrapper, WindowHeader } from 'Components/Window';
 
 class ByomLogin extends Component {
-  constructor(props){
-    super(props)
-  }
 
   handleUserNameChange =  e => {
     this.props.onUserNameChange(e.target.value);
   }
 
   headerIconClick = (e) => {
-    this.props.headerIconClick(e.target.name, 'Byom');
+    this.props.headerIconClick('BYOM', e.target.name);
   }
   render(){
     const { nickname, onUserNameSubmit} = this.props;

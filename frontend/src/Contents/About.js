@@ -1,24 +1,26 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import Draggable from 'react-draggable';
 import styled from 'styled-components'
 import { WindowBox, WindowContentWrapper, WindowHeader } from 'Components/Window';
 
 const AboutWrapper = styled.div`
-  display : ${props => (props.windowStatus['About']==="open" ? "block": "none")};
+  display : ${props => (props.About ==="open" ? "block": "none")}
+  zindex: ${props => (props.topZ === "About" ? "1" : "0")}
+  
 `
 class About extends Component {
 
-  headerIconClick = (e) => {
-    this.props.headerIconClick(e.target.name, "About");
+  headerBoxClick = (e) => {
+    this.props.headerIconClick("About", e.target.name);
   }
 
   render(){
-    const {windowStatus} = this.props;
+    const { About, topZ } = this.props;
     return(
       <Draggable>
-        <AboutWrapper windowStatus={windowStatus}>
+        <AboutWrapper About={About} topZ={topZ}>
           <WindowBox>
-            <WindowHeader handleClick={this.headerIconClick}/>
+            <WindowHeader handleClick={this.headerBoxClick}/>
             <WindowContentWrapper>
               hi~ we are BYOM.
             </WindowContentWrapper>
@@ -30,4 +32,4 @@ class About extends Component {
 }
 
 
-export default About
+export default About;

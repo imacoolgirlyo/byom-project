@@ -14,19 +14,20 @@ class Footer extends Component{
     const { isStartBtnOn } = this.state;
     this.setState({isStartBtnOn : !this.state.isStartBtnOn});
   }
+
   render(){
-    const {programs, windowStatus} = this.props;
-    const {isStartBtnOn} = this.state;
-    console.log(windowStatus);
+    const { programs, footerPgmButtonHandler } = this.props;
+    const { isStartBtnOn } = this.state;
     return(
       <Fragment>
         <FooterMenu
-        isMenuShown = {isStartBtnOn}
+          isMenuShown = {isStartBtnOn}
         />
         <FooterBar 
-        programs={programs}
-        isStartBtnOn = {isStartBtnOn}
-        onStartBtnClick = {this.startBtnClickHandler}
+          programs={programs}
+          footerPgmButtonHandler={footerPgmButtonHandler}
+          isStartBtnOn = {isStartBtnOn}
+          onStartBtnClick = {this.startBtnClickHandler}
         />
       </Fragment>
     )
