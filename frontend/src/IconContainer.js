@@ -1,6 +1,12 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import AboutIcon from 'Components/Icon/AboutIcon';
 import ByomIcon from 'Components/Icon/ByomIcon';
+import styled from 'styled-components'
+
+const IconBox = styled.div`
+ display: flex;
+ padding: 20px;
+`
 
 class IconContainer extends Component {
   constructor(props){
@@ -17,10 +23,10 @@ class IconContainer extends Component {
   }
   render(){
     return(
-      <Fragment>
+      <IconBox>
         <AboutIcon handleIconClick={this.IconClick}/>
         <ByomIcon handleIconClick={this.IconClick}/>
-      </Fragment>
+      </IconBox>
     )
   }
 }

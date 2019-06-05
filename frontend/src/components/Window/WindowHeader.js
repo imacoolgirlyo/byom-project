@@ -19,16 +19,20 @@ const WindowHeaderColumn = styled('div')`
   align-items: center;
 `;
 
-export const WindowHeader = ({handleClick}) => {
+const HeaderName = styled.div`
+ margin-left: 10px;
+`
+
+export const WindowHeader = ({name, handleClick}) => {
   return (
     <WindowHeaderContainer onClick={handleClick}>
       <WindowHeaderColumn>
       {/* <LoginHeaderLogo/> */}
-          {/* <div>{props.name}</div> */}
+          <HeaderName>{name}</HeaderName>
       </WindowHeaderColumn>
       <WindowHeaderColumn>
           <Min/>
-          <Max/>
+          {/* <Max/> */}
           <Close/>
       </WindowHeaderColumn>
     </WindowHeaderContainer>

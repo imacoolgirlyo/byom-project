@@ -20,7 +20,7 @@ class About extends Component {
       <Draggable>
         <AboutWrapper About={About} topZ={topZ}>
           <WindowBox>
-            <WindowHeader handleClick={this.headerBoxClick}/>
+            <WindowHeader name="About.exe" handleClick={this.headerBoxClick}/>
             <WindowContentWrapper>
               hi~ we are BYOM.
             </WindowContentWrapper>

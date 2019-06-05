@@ -72,7 +72,7 @@ class ByomMusic extends Component{
     const { musics, artist, title } = this.state;
     return(
     <WindowBox>
-      <WindowHeader handleClick={this.handleIconClick}/>
+      <WindowHeader name="BYOM.exe" handleClick={this.handleIconClick}/>
       <WindowContentWrapper>
       <MusicList
         me={nickname}
