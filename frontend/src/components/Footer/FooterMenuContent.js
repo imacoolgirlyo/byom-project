@@ -32,7 +32,7 @@ class FooterMenuContent extends Component{
       'menu_hasDropdown' : content.dropdown
       })
       return (
-        <div className={menuClass}>
+        <div key={content.id} className={menuClass}>
          <Icon name={content.name} /> 
          <div className="menu_content-column">{content.name}</div>
           {

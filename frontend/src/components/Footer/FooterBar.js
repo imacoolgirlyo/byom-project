@@ -24,16 +24,14 @@ class FooterBar extends Component {
       isStartBtnOn 
     } = this.props;
 
-    console.log(programs);
-
-    // let programList = programs.map( program => {
-    //   return (
-    //     <FooterProgramButton 
-    //       name={program}
-    //       footerPgmButtonHandler={footerPgmButtonHandler}
-    //     />
-    //   )
-    // })
+    let programList = programs.map( program => {
+      return (
+        <FooterProgramButton 
+          name={program}
+          footerPgmButtonHandler={footerPgmButtonHandler}
+        />
+      )
+    })
     
     const startBtnClass = classNames({
       'start_button' : true,
@@ -47,7 +45,7 @@ class FooterBar extends Component {
          <div ><img className="startLogo" src={window} alt="logo"/> </div>
          <div><b>Start</b></div>
         </div>
-        {/* {programList} */}
+        {programList}
       </div>
       </Fragment>
     )
