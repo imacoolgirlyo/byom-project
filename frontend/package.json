@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "autoscroll-react": "^3.2.0",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "classnames": "^2.2.6",
     "immutable": "^4.0.0-rc.12",
     "node-sass": "^4.11.0",
